@@ -7,7 +7,8 @@ namespace _YabuGames.Scripts.Signals
     public class LevelSignals : MonoBehaviour
     {
         public static LevelSignals Instance;
-        
+
+        public UnityAction OnDrillStart = delegate { };
 
         private void Awake()
         {

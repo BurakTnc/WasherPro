@@ -93,6 +93,10 @@ namespace _YabuGames.Scripts.Managers
             HapticManager.Instance.PlayFailureHaptic();
         }
 
+        public void DrillButton()
+        {
+            LevelSignals.Instance.OnDrillStart?.Invoke();
+        }
         public void PlayButton()
         {
             CoreGameSignals.Instance.OnGameStart?.Invoke();

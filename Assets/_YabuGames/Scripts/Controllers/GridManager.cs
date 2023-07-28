@@ -19,9 +19,15 @@ namespace _YabuGames.Scripts.Controllers
             }
         }
 
-        public void ChangeConditions(int gridIndex, bool isOccupied)
+        public void ChangeOldGridCondition(int oldGridIndex)
         {
-            _occupiedGrids[gridIndex] = isOccupied;
+            _occupiedGrids[oldGridIndex] = false;
+            _gridList[oldGridIndex].GetComponent<BoxCollider>().enabled = true;
+        }
+
+        public bool CheckGridCondition(int gridIndex)
+        {
+            return _occupiedGrids[gridIndex];
         }
     }
 }

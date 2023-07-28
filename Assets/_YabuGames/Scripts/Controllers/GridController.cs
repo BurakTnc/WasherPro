@@ -18,24 +18,13 @@ namespace _YabuGames.Scripts.Controllers
             _gridIndex = transform.GetSiblingIndex();
         }
 
-        public void SetGridConditions(Transform obj)
+        public void SetGridConditions()
         {
             _isOccupied = !_isOccupied;
-            _gridManager.ChangeConditions(_gridIndex, _isOccupied);
+            //_gridManager.ChangeConditions(_gridIndex, _isOccupied);
             _collider.enabled = !_isOccupied;
-
-            if (!_isOccupied) 
-                return;
             
-            Place(obj);
         }
-
-        private void Place(Component obj)
-        {
-            if (obj.TryGetComponent(out UpgradeCube cube))
-            {
-                cube.SetGrid(transform);
-            }
-        }
+        
     }
 }
