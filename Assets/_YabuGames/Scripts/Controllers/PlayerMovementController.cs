@@ -1,7 +1,8 @@
+using System.Collections;
 using _YabuGames.Scripts.Signals;
 using UnityEngine;
 
-namespace _YabuGames.Scripts.Controllers.Runner
+namespace _YabuGames.Scripts.Controllers
 {
     public class PlayerMovementController : MonoBehaviour
     {
@@ -33,14 +34,14 @@ namespace _YabuGames.Scripts.Controllers.Runner
 
        private void Subscribe()
        {
-           CoreGameSignals.Instance.OnGameStart += OnGameStart;
+           LevelSignals.Instance.OnRunStart += OnGameStart;
            CoreGameSignals.Instance.OnLevelWin += OnGameEnd;
            CoreGameSignals.Instance.OnLevelFail += OnGameEnd;
        }
 
        private void UnSubscribe()
        {
-           CoreGameSignals.Instance.OnGameStart -= OnGameStart;
+           LevelSignals.Instance.OnRunStart -= OnGameStart;
            CoreGameSignals.Instance.OnLevelWin -= OnGameEnd;
            CoreGameSignals.Instance.OnLevelFail -= OnGameEnd;
        }
@@ -48,13 +49,24 @@ namespace _YabuGames.Scripts.Controllers.Runner
        #endregion
        
        private void Update()
-        {
+       {
             Movement();
-        }
+       }
+
+       private IEnumerator StartDelay()
+       {
+           yield return new WaitForSeconds(1);
+           Run();
+       }
+
+       private void Run()
+       {
+           _isGameRunning = true;
+       }
 
        private void OnGameStart()
        {
-           _isGameRunning = true;
+           StartCoroutine(StartDelay());
        }
 
        private void OnGameEnd()

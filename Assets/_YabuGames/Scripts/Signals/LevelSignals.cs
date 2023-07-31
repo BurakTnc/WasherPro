@@ -9,6 +9,7 @@ namespace _YabuGames.Scripts.Signals
         public static LevelSignals Instance;
 
         public UnityAction OnDrillStart = delegate { };
+        public UnityAction OnRunStart = delegate { };
 
         private void Awake()
         {

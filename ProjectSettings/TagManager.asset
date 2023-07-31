@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Grid
   - Obstacle
+  - Item
+  - Start
   layers:
   - Default
   - TransparentFX

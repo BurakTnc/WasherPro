@@ -1,10 +1,11 @@
 using System;
 using _YabuGames.Scripts.Objects;
+using _YabuGames.Scripts.Signals;
 using UnityEngine;
 
 namespace _YabuGames.Scripts.Controllers
 {
-    public class CollisionController : MonoBehaviour
+    public class ItemCollisionController : MonoBehaviour
     {
 
         private GrabController _grabController;
@@ -22,6 +23,12 @@ namespace _YabuGames.Scripts.Controllers
             {
                 _grabController.PlaceCube(other.transform.position,other.transform);
             }
+
+            if (other.CompareTag("Item"))
+            {
+                _grabController.Merge(other.transform);
+            }
+            
         }
         private void OnTriggerEnter(Collider other)
         {
@@ -42,6 +49,10 @@ namespace _YabuGames.Scripts.Controllers
                     _item.Explode();
                 }
 
+            }
+            if (other.CompareTag("Start"))
+            {
+                _item.PrepareToRun();
             }
         }
     }

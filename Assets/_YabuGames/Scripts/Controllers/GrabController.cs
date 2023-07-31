@@ -12,12 +12,12 @@ namespace _YabuGames.Scripts.Controllers
         private Vector3 _previousPos;
         private bool _isMoving;
         private bool _canMerge;
-        private DrillerItem _cube;
+        private DrillerItem _drillerItem;
 
         private void Awake()
         {
             _camera = Camera.main;
-            _cube = GetComponent<DrillerItem>();
+            _drillerItem = GetComponent<DrillerItem>();
         }
         
 
@@ -65,7 +65,7 @@ namespace _YabuGames.Scripts.Controllers
             
             if (grid.TryGetComponent( out GridController gridController))
             {
-                _cube.ChangeOldGridCondition(grid);
+                _drillerItem.ChangeOldGridCondition(grid);
                 gridController.SetGridConditions();
             }
             
@@ -76,6 +76,19 @@ namespace _YabuGames.Scripts.Controllers
             transform.DOMove(_previousPos, .5f).SetEase(Ease.OutBack)
                 .OnComplete(() => _isMoving = false);
 
+        }
+
+        public void Merge(Transform selectedItem)
+        {
+            if (selectedItem.TryGetComponent(out DrillerItem item))
+            {
+                if(item.GetDrillForce() != _drillerItem.GetDrillForce())
+                    return;
+                if(!_canMerge)
+                    return;
+                
+                item.Merge(transform.gameObject);
+            }
         }
     }
 }

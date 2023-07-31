@@ -7,7 +7,8 @@ namespace _YabuGames.Scripts.Controllers
     {
         [SerializeField] private float followSpeed = 3f;
         [SerializeField] private Vector3 offset;
-        
+
+        private Vector3 _velocity = Vector3.zero;
         private Transform _player;
         private bool _isGameRunning = false;
 
@@ -35,14 +36,14 @@ namespace _YabuGames.Scripts.Controllers
 
         private void Subscribe()
                 {
-                    CoreGameSignals.Instance.OnGameStart += OnGameStart;
+                    LevelSignals.Instance.OnRunStart += OnGameStart;
                     CoreGameSignals.Instance.OnLevelFail += OnGameEnd;
                     CoreGameSignals.Instance.OnLevelWin += OnGameEnd;
                 }
         
                 private void UnSubscribe()
                 {
-                    CoreGameSignals.Instance.OnGameStart -= OnGameStart;
+                    LevelSignals.Instance.OnRunStart -= OnGameStart;
                     CoreGameSignals.Instance.OnLevelFail -= OnGameEnd;
                     CoreGameSignals.Instance.OnLevelWin -= OnGameEnd;
                 }
@@ -66,6 +67,11 @@ namespace _YabuGames.Scripts.Controllers
                 transform.position = Vector3.Lerp(transform.position, _player.position + offset,
                     followSpeed * Time.deltaTime);
             }
+
+            // if (_isGameRunning) 
+            // {
+            //     transform.position = Vector3.SmoothDamp(transform.position, _player.position, ref _velocity, followSpeed);
+            // }
 
                                      // For Limited Follow
             
