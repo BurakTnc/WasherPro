@@ -71,13 +71,13 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Metallic: 0
+    - _Metallic: 0.69
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RampSmooth: 0.296
+    - _RampSmooth: 0.364
     - _RampSmoothAdd: 0.75
-    - _RampThreshold: 0.286
+    - _RampThreshold: 0.38
     - _RimMax: 0.85
     - _RimMin: 0.6
     - _RimStrength: 0.5
