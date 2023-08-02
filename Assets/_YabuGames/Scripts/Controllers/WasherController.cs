@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using _YabuGames.Scripts.Signals;
 using UnityEngine;
 
@@ -29,19 +30,30 @@ namespace _YabuGames.Scripts.Controllers
 
         private void Subscribe()
         {
-            LevelSignals.Instance.OnRunStart += Activate;
+            LevelSignals.Instance.OnRunStart += Init;
         }
 
         private void UnSubscribe()
         {
-            LevelSignals.Instance.OnRunStart -= Activate;
+            LevelSignals.Instance.OnRunStart -= Init;
         }
+        private void Init()
+        {
+            StartCoroutine(ActivationDelay());
+        }
+
         private void Activate()
         {
             waterHose.SetActive(true);
             _collider.enabled = true;
             rope.SetParent(null);
             rope.gameObject.SetActive(true);
+        }
+
+        private IEnumerator ActivationDelay()
+        {
+            yield return new WaitForSeconds(.5f);
+            Activate();
         }
 
         private void CleanTheDirt(Transform dirt)
@@ -54,7 +66,6 @@ namespace _YabuGames.Scripts.Controllers
         {
             if (other.CompareTag("Dirt"))
             {
-                Debug.Log("fwsa");
                 CleanTheDirt(other.transform);
             }
         }
