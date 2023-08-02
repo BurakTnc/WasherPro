@@ -2083,7 +2083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61104f33a3f344db9b7e0d0cda41a9fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  solverIndices: 
+  solverIndices: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000360000003700000038000000390000003a0000003b0000003c0000003d0000003e0000003f000000400000004100000042000000430000004400000045000000460000004700000048000000490000004a0000004b0000004c0000004d0000004e0000004f000000500000005100000052000000530000005400000055000000560000005700000058000000590000005a0000005b0000005c0000005d0000005e0000005f000000600000006100000062000000630000006400000065000000660000006700000068000000690000006a0000006b0000006c0000006d0000006e0000006f000000700000007100000072000000730000007400000075000000760000007700000078000000790000007a0000007b0000007c0000007d0000007e0000007f000000
   m_CollisionMaterial: {fileID: 0}
   m_SurfaceCollisions: 0
   m_SelfCollisions: 0
@@ -2333,7 +2333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Actor: {fileID: 1131406592}
   m_Target: {fileID: 2608785914190529204}
-  m_ParticleGroup: {fileID: 850219480861056083, guid: bad51b8da7a2544d4acd723045f3e186, type: 2}
+  m_ParticleGroup: {fileID: 4564845932575016994, guid: bad51b8da7a2544d4acd723045f3e186, type: 2}
   m_AttachmentType: 0
   m_ConstrainOrientation: 0
   m_Compliance: 0
@@ -4865,7 +4865,7 @@ BoxCollider:
   m_GameObject: {fileID: 3422617360738998286}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 20, y: 1, z: 1}
   m_Center: {x: -10.67, y: 0, z: 0}
@@ -6045,8 +6045,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2950748474852355062, guid: 33d40aa5065b54512924663d684f67a3, type: 3}
+      propertyPath: simulationSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2950748474852355062, guid: 33d40aa5065b54512924663d684f67a3, type: 3}
+      propertyPath: SubModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2950748474852355062, guid: 33d40aa5065b54512924663d684f67a3, type: 3}
+      propertyPath: emitterVelocityMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2950748474852355062, guid: 33d40aa5065b54512924663d684f67a3, type: 3}
+      propertyPath: CollisionModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2950748474852355062, guid: 33d40aa5065b54512924663d684f67a3, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33d40aa5065b54512924663d684f67a3, type: 3}
@@ -21738,7 +21754,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2950748474837389544, guid: 33d40aa5065b54512924663d684f67a3, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2950748474852355062, guid: 33d40aa5065b54512924663d684f67a3, type: 3}
+      propertyPath: CollisionModule.enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2950748474852355062, guid: 33d40aa5065b54512924663d684f67a3, type: 3}
       propertyPath: InitialModule.startSpeed.scalar

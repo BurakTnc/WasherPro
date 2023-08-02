@@ -40,8 +40,8 @@ namespace _YabuGames.Scripts.Controllers
         {
             waterHose.SetActive(true);
             _collider.enabled = true;
-            //rope.SetParent(null);
-            //rope.gameObject.SetActive(true);
+            rope.SetParent(null);
+            rope.gameObject.SetActive(true);
         }
 
         private void CleanTheDirt(Transform dirt)
