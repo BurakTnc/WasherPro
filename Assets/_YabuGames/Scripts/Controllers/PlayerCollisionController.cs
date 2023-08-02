@@ -10,6 +10,7 @@ namespace _YabuGames.Scripts.Controllers
         {
             if (other.CompareTag("DirtyPoint"))
             {
+                Debug.Log("feaf");
                 Destroy(other.gameObject);
                 LevelSignals.Instance.OnCleanDirt?.Invoke();
             }

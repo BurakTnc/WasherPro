@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using _YabuGames.Scripts.Signals;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 namespace _YabuGames.Scripts.Controllers
 {
@@ -58,8 +59,12 @@ namespace _YabuGames.Scripts.Controllers
 
         private void CleanTheDirt(Transform dirt)
         {
-            if (dirt.localScale.y < washingForce) 
+            if (dirt.localScale.y < washingForce)
+            {
+                dirt.GetComponent<BoxCollider>().enabled = false;
                 return;
+            }
+            
             dirt.transform.localScale -= Vector3.up * washingForce;
             dirt.transform.position += Vector3.up * (washingForce / 2);
         }
