@@ -544,7 +544,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2608785914190529204}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &486062629
 GameObject:
@@ -4834,8 +4834,8 @@ Transform:
   - {fileID: 9096485091408852878}
   - {fileID: 988169262052127475}
   - {fileID: 5559153586495413021}
-  - {fileID: 2346499586854987434}
   - {fileID: 460958756}
+  - {fileID: 2346499586854987434}
   m_Father: {fileID: 4441375706812102410}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
@@ -5931,11 +5931,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2950748474837138366, guid: 33d40aa5065b54512924663d684f67a3, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2950748474837138366, guid: 33d40aa5065b54512924663d684f67a3, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.9999998
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2950748474837138366, guid: 33d40aa5065b54512924663d684f67a3, type: 3}
       propertyPath: m_LocalScale.y
@@ -5943,7 +5943,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2950748474837138366, guid: 33d40aa5065b54512924663d684f67a3, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.99999994
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2950748474837138366, guid: 33d40aa5065b54512924663d684f67a3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5951,7 +5951,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2950748474837138366, guid: 33d40aa5065b54512924663d684f67a3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.000000055879354
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2950748474837138366, guid: 33d40aa5065b54512924663d684f67a3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6184,7 +6184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a6c64c29cf31541b9abd64e8fb513923, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6c64c29cf31541b9abd64e8fb513923, type: 3}
