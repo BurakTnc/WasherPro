@@ -58,6 +58,8 @@ namespace _YabuGames.Scripts.Controllers
 
         private void CleanTheDirt(Transform dirt)
         {
+            if (dirt.localScale.y < washingForce) 
+                return;
             dirt.transform.localScale -= Vector3.up * washingForce;
             dirt.transform.position += Vector3.up * (washingForce / 2);
         }
@@ -68,6 +70,16 @@ namespace _YabuGames.Scripts.Controllers
             {
                 CleanTheDirt(other.transform);
             }
+        }
+
+        public void IncreasePower(float damage)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void IncreaseRange(float range)
+        {
+            throw new NotImplementedException();
         }
     }
 }
