@@ -9,6 +9,7 @@ namespace _YabuGames.Scripts.Controllers
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private List<GameObject> washers = new List<GameObject>();
+        [SerializeField] private float spaceBetweenWashers = .1f;
 
 
         #region Subscribtions
@@ -37,8 +38,8 @@ namespace _YabuGames.Scripts.Controllers
 
         private void AlignWashers()
         {
-            var leftSpace = .25f;
-            var rightSpace = .25f;
+            var leftSpace = .1f;
+            var rightSpace = .1f;
             for (var i = 0; i < washers.Count; i++)
             {
                 var takenWasher = washers[i].transform;
@@ -53,13 +54,13 @@ namespace _YabuGames.Scripts.Controllers
                 {
                     var desiredPosition = new Vector3(-leftSpace, .5f, currentPosition.z);
                     takenWasher.DOMove(desiredPosition, .5f).SetEase(Ease.OutSine);
-                    leftSpace += .25f;
+                    leftSpace += .1f;
                 }
                 else
                 {
                     var desiredPosition = new Vector3(rightSpace, .5f, currentPosition.z);
                     takenWasher.DOMove(desiredPosition, .5f).SetEase(Ease.OutSine);
-                    rightSpace += .25f;
+                    rightSpace += .1f;
                 }
                     
             }

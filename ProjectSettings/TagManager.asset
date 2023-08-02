@@ -9,6 +9,8 @@ TagManager:
   - Obstacle
   - Item
   - Start
+  - Dirt
+  - DirtyPoint
   layers:
   - Default
   - TransparentFX

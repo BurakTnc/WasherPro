@@ -10,6 +10,7 @@ namespace _YabuGames.Scripts.Signals
 
         public UnityAction OnDrillStart = delegate { };
         public UnityAction OnRunStart = delegate { };
+        public UnityAction OnCleanDirt = delegate { };
 
         private void Awake()
         {

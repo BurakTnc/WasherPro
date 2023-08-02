@@ -5168,8 +5168,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ea24f2f6b974fa297ef5d3262baf656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cleaningRotation: {x: 35, y: 0, z: 0}
   level: 0
-  moveSpeed: 2000
+  moveSpeed: 1500
   items:
   - {fileID: 3558836003608000411}
   - {fileID: 3422617360738998286}

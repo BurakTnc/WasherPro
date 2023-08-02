@@ -8,8 +8,10 @@ namespace _YabuGames.Scripts.Controllers
     {
         public static bool OnTrap;
 
-        [SerializeField] private float xPosClamp, speedSideways, speed;
-        
+        [SerializeField] private float xPosClamp, speedSideways, speed, cleaningSpeed;
+
+        private float _currentSpeed;
+        private bool _isCleaning;
         private Rigidbody _rb;
         private Vector3 _pos1, _pos2;
         private bool _holding;
@@ -19,6 +21,7 @@ namespace _YabuGames.Scripts.Controllers
         {
             _rb = GetComponentInChildren<Rigidbody>();
             _isGameRunning = _holding = OnTrap = false;
+            _currentSpeed = speed;
         }
 
        #region Subscribtions
@@ -37,6 +40,7 @@ namespace _YabuGames.Scripts.Controllers
            LevelSignals.Instance.OnRunStart += OnGameStart;
            CoreGameSignals.Instance.OnLevelWin += OnGameEnd;
            CoreGameSignals.Instance.OnLevelFail += OnGameEnd;
+           LevelSignals.Instance.OnCleanDirt += OnCleaning;
        }
 
        private void UnSubscribe()
@@ -44,6 +48,7 @@ namespace _YabuGames.Scripts.Controllers
            LevelSignals.Instance.OnRunStart -= OnGameStart;
            CoreGameSignals.Instance.OnLevelWin -= OnGameEnd;
            CoreGameSignals.Instance.OnLevelFail -= OnGameEnd;
+           LevelSignals.Instance.OnCleanDirt -= OnCleaning;
        }
 
        #endregion
@@ -57,6 +62,12 @@ namespace _YabuGames.Scripts.Controllers
        {
            yield return new WaitForSeconds(1);
            Run();
+       }
+
+       private void OnCleaning()
+       {
+           _isCleaning = !_isCleaning;
+           _currentSpeed = _isCleaning ? cleaningSpeed : speed;
        }
 
        private void Run()
@@ -92,11 +103,11 @@ namespace _YabuGames.Scripts.Controllers
                     Vector3 delta = _pos1 - _pos2;
                     _pos1 = _pos2;
                     delta = new Vector3(Mathf.Clamp(delta.x, -0.05f, 0.05f), delta.y);
-                    _rb.velocity = new Vector3(Mathf.Lerp(_rb.velocity.x, -delta.x * speedSideways, 0.2f), _rb.velocity.y, speed);
+                    _rb.velocity = new Vector3(Mathf.Lerp(_rb.velocity.x, -delta.x * speedSideways, 0.2f), _rb.velocity.y, _currentSpeed);
                 }
                 else
                 {
-                    _rb.velocity = transform.forward * speed;
+                    _rb.velocity = transform.forward * _currentSpeed;
                 }
 
                 var position = transform.position;

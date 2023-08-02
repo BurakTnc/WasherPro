@@ -1,4 +1,5 @@
 using _YabuGames.Scripts.Signals;
+using DG.Tweening;
 using UnityEngine;
 
 namespace _YabuGames.Scripts.Controllers
@@ -6,11 +7,14 @@ namespace _YabuGames.Scripts.Controllers
     public class CameraController : MonoBehaviour
     {
         [SerializeField] private float followSpeed = 3f;
+        [SerializeField] private Vector3 followRotation;
         [SerializeField] private Vector3 offset;
+        [SerializeField] private Vector3 onDirtRotation;
+        [SerializeField] private Vector3 onDirtOffset;
 
-        private Vector3 _velocity = Vector3.zero;
+        private bool _isCleaning;
         private Transform _player;
-        private bool _isGameRunning = false;
+        private bool _isGameRunning;
 
         private void Awake()
         {
@@ -39,6 +43,7 @@ namespace _YabuGames.Scripts.Controllers
                     LevelSignals.Instance.OnRunStart += OnGameStart;
                     CoreGameSignals.Instance.OnLevelFail += OnGameEnd;
                     CoreGameSignals.Instance.OnLevelWin += OnGameEnd;
+                    LevelSignals.Instance.OnCleanDirt += OnCleaningLook;
                 }
         
                 private void UnSubscribe()
@@ -46,6 +51,7 @@ namespace _YabuGames.Scripts.Controllers
                     LevelSignals.Instance.OnRunStart -= OnGameStart;
                     CoreGameSignals.Instance.OnLevelFail -= OnGameEnd;
                     CoreGameSignals.Instance.OnLevelWin -= OnGameEnd;
+                    LevelSignals.Instance.OnCleanDirt -= OnCleaningLook;
                 }
 
         #endregion
@@ -53,6 +59,7 @@ namespace _YabuGames.Scripts.Controllers
         private void OnGameStart()
         {
             _isGameRunning = true;
+            transform.DORotate(followRotation, 1);
         }
 
         private void OnGameEnd()
@@ -60,11 +67,26 @@ namespace _YabuGames.Scripts.Controllers
             _isGameRunning = false;
         }
 
+        private void OnCleaningLook()
+        {
+            _isCleaning = !_isCleaning;
+            if (_isCleaning)
+            {
+                transform.DORotate(onDirtRotation, .6f).SetEase(Ease.InSine);
+            }
+            else
+            {
+                transform.DORotate(followRotation, .4f).SetEase(Ease.InSine);
+            }
+        }
+
         private void Follow()
         {
             if (_isGameRunning)
             {
-                transform.position = Vector3.Lerp(transform.position, _player.position + offset,
+                var currentOffset = _isCleaning ? onDirtOffset : offset;
+                
+                transform.position = Vector3.Lerp(transform.position, _player.position + currentOffset,
                     followSpeed * Time.deltaTime);
             }
 

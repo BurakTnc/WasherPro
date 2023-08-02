@@ -9,11 +9,14 @@ namespace _YabuGames.Scripts.Controllers
 {
     public class DrillerItem : MonoBehaviour
     {
+        [SerializeField] private Vector3 cleaningRotation;
         [SerializeField] private int level = 1;
         [SerializeField] private float moveSpeed;
         [SerializeField] private GameObject[] items;
         [SerializeField] private TextMeshPro levelText;
 
+        private Vector3 _neutralRotation;
+        private bool _isCleaning;
         private PlayerController _playerRoot;
         private Rigidbody _rb;
         private Vector3 _prevPosition;
@@ -24,6 +27,7 @@ namespace _YabuGames.Scripts.Controllers
             _rb = GetComponent<Rigidbody>();
             _playerRoot = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
             SetLevelText();
+            _neutralRotation = transform.rotation.eulerAngles;
         }
 
         private void OnEnable()
@@ -39,11 +43,13 @@ namespace _YabuGames.Scripts.Controllers
         private void Subscribe()
         {
             LevelSignals.Instance.OnDrillStart += StartDrill;
+            LevelSignals.Instance.OnCleanDirt += OnCleaning;
         }
 
         private void UnSubscribe()
         {
             LevelSignals.Instance.OnDrillStart -= StartDrill;
+            LevelSignals.Instance.OnCleanDirt -= OnCleaning;
         }
 
         private void SetLevelText()
@@ -53,6 +59,17 @@ namespace _YabuGames.Scripts.Controllers
         private void StartDrill()
         {
             _rb.velocity = Vector3.forward * (moveSpeed * Time.deltaTime);
+        }
+
+        private void OnCleaning()
+        {
+            _isCleaning = !_isCleaning;
+            if (_isCleaning)
+                transform.DORotate(cleaningRotation, .3f).SetEase(Ease.InSine);
+            else
+            {
+                transform.DORotate(_neutralRotation, .3f).SetEase(Ease.InSine);
+            }
         }
         public void ChangeOldGridCondition(Transform newGrid)
         {
