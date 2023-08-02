@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 namespace _YabuGames.Scripts.Objects
@@ -19,6 +20,11 @@ namespace _YabuGames.Scripts.Objects
             destroyParticle.gameObject.SetActive(true);
             Destroy(destroyParticle.gameObject,3);
             Destroy(gameObject);
+        }
+
+        public void GetHit()
+        {
+            transform.DOShakeScale(.3f, Vector3.right*.3f, 5, 100, true);
         }
     }
 }

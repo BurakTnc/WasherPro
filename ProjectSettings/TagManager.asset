@@ -12,6 +12,7 @@ TagManager:
   - Dirt
   - DirtyPoint
   - Gate
+  - Glass
   layers:
   - Default
   - TransparentFX

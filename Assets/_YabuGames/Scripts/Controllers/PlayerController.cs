@@ -46,19 +46,19 @@ namespace _YabuGames.Scripts.Controllers
                 var currentPosition = transform.position;
                 if (i == 0)
                 {
-                    var desiredPosition = new Vector3(0, .5f, currentPosition.z);
+                    var desiredPosition = new Vector3(0, 0, currentPosition.z);
                     takenWasher.DOMove(desiredPosition, .5f).SetEase(Ease.OutSine);
                     continue;
                 }
                 if (i % 2 != 0) 
                 {
-                    var desiredPosition = new Vector3(-leftSpace, .5f, currentPosition.z);
+                    var desiredPosition = new Vector3(-leftSpace, 0, currentPosition.z);
                     takenWasher.DOMove(desiredPosition, .5f).SetEase(Ease.OutSine);
                     leftSpace += .1f;
                 }
                 else
                 {
-                    var desiredPosition = new Vector3(rightSpace, .5f, currentPosition.z);
+                    var desiredPosition = new Vector3(rightSpace, 0, currentPosition.z);
                     takenWasher.DOMove(desiredPosition, .5f).SetEase(Ease.OutSine);
                     rightSpace += .1f;
                 }

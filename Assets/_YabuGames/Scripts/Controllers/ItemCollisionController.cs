@@ -46,6 +46,7 @@ namespace _YabuGames.Scripts.Controllers
                 }
                 else
                 {
+                    obstacle.GetHit();
                     _item.Explode();
                 }
 

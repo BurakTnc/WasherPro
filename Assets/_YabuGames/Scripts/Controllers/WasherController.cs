@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using _YabuGames.Scripts.Objects;
 using _YabuGames.Scripts.Signals;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
@@ -81,6 +82,14 @@ namespace _YabuGames.Scripts.Controllers
                 if (other.TryGetComponent(out GateController gate))
                 {
                     gate.IncreaseGateStats();
+                }
+            }
+
+            if (other.CompareTag("Glass"))
+            {
+                if (other.TryGetComponent(out GlassScript glass))
+                {
+                    glass.Fill();
                 }
             }
         }
