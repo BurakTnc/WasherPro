@@ -11,6 +11,7 @@ namespace _YabuGames.Scripts.Controllers
         [SerializeField] private Vector3 offset;
         [SerializeField] private Vector3 onDirtRotation;
         [SerializeField] private Vector3 onDirtOffset;
+        [SerializeField] private float moveLength, moveTime;
 
         private bool _isCleaning;
         private Transform _player;
@@ -44,6 +45,7 @@ namespace _YabuGames.Scripts.Controllers
                     CoreGameSignals.Instance.OnLevelFail += OnGameEnd;
                     CoreGameSignals.Instance.OnLevelWin += OnGameEnd;
                     LevelSignals.Instance.OnCleanDirt += OnCleaningLook;
+                    LevelSignals.Instance.OnDrillStart += InitRun;
                 }
         
                 private void UnSubscribe()
@@ -52,6 +54,7 @@ namespace _YabuGames.Scripts.Controllers
                     CoreGameSignals.Instance.OnLevelFail -= OnGameEnd;
                     CoreGameSignals.Instance.OnLevelWin -= OnGameEnd;
                     LevelSignals.Instance.OnCleanDirt -= OnCleaningLook;
+                    LevelSignals.Instance.OnDrillStart -= InitRun;
                 }
 
         #endregion
@@ -59,7 +62,6 @@ namespace _YabuGames.Scripts.Controllers
         private void OnGameStart()
         {
             _isGameRunning = true;
-            transform.DORotate(followRotation, 1);
         }
 
         private void OnGameEnd()
@@ -80,6 +82,11 @@ namespace _YabuGames.Scripts.Controllers
             }
         }
 
+        private void InitRun()
+        {
+            transform.DOMoveZ(moveLength, moveTime).SetRelative(true).SetEase(Ease.InSine)
+                .OnComplete(() => transform.DORotate(followRotation, 1));
+        }
         private void Follow()
         {
             if (_isGameRunning)

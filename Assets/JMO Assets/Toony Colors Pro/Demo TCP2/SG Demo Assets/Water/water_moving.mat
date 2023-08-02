@@ -72,9 +72,9 @@ Material:
     - _DepthDistance: 0.68
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _FoamSmooth: 0.182
-    - _FoamSpread: 2
-    - _FoamStrength: 0.8
+    - _FoamSmooth: 0.5
+    - _FoamSpread: 5
+    - _FoamStrength: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -100,12 +100,12 @@ Material:
     - __dummy__: 0
     m_Colors:
     - _BumpSpeed: {r: 0.2, g: 0.2, b: 0.3, a: 0.3}
-    - _Color: {r: 0.06666667, g: 0.6666667, b: 0.92549026, a: 1}
-    - _DepthColor: {r: 0, g: 0.37459263, b: 0.778, a: 1}
+    - _Color: {r: 0.18792273, g: 0.8511753, b: 0.9716981, a: 1}
+    - _DepthColor: {r: 0.6650944, g: 0.8981393, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FoamColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
     - _FoamSpeed: {r: 1, g: -1, b: -1, a: -1}
     - _HColor: {r: 0.9485294, g: 0.9485294, b: 0.9485294, a: 1}
     - _RimColor: {r: 0.0441176, g: 0.6440159, b: 1, a: 0.95686275}
-    - _SColor: {r: 0, g: 0.31257612, b: 0.6764706, a: 1}
+    - _SColor: {r: 0, g: 0.5514303, b: 0.7924528, a: 1}
   m_BuildTextureStacks: []

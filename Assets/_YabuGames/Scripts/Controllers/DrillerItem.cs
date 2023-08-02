@@ -3,6 +3,7 @@ using _YabuGames.Scripts.Signals;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.Serialization;
 
 namespace _YabuGames.Scripts.Controllers
@@ -59,6 +60,7 @@ namespace _YabuGames.Scripts.Controllers
         private void StartDrill()
         {
             _rb.velocity = Vector3.forward * (moveSpeed * Time.deltaTime);
+            levelText.gameObject.SetActive(false);
         }
 
         private void OnCleaning()
@@ -95,7 +97,7 @@ namespace _YabuGames.Scripts.Controllers
         public void Merge(GameObject mergedObj)
         {
             items[level].SetActive(false);
-            Destroy(mergedObj);
+            mergedObj.SetActive(false);
             level++;
             SetLevelText();
             

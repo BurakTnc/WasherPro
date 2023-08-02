@@ -58,16 +58,16 @@ namespace _YabuGames.Scripts.Controllers
             switch (gateMode)
             {
                 case GateMode.Speed:
-                    speed += 0.3f;
+                    speed += 0.05f;
                    // _gateVisuals.SetGateColor(speed>=0);
                     break;
                 case GateMode.Power:
-                    power += 0.3f;
+                    power += 0.05f;
                     //_gateVisuals.SetGateColor(power>=0);
                     break;
                 case GateMode.Range:
                    // _gateVisuals.SetGateColor(range>=0);
-                    range += 0.3f;
+                    range += 0.05f;
                     break;
                 default:
                     break;

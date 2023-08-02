@@ -16646,5 +16646,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2924cbda08b445f9047b867b7b1fa20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fillingSpeed: 0.02
+  fillingSpeed: 0.01
   liquid: {fileID: 638287946710933235}

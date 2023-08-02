@@ -46,7 +46,7 @@ namespace _YabuGames.Scripts.Controllers
                 var currentPosition = transform.position;
                 if (i == 0)
                 {
-                    var desiredPosition = new Vector3(0, 0, currentPosition.z);
+                    var desiredPosition = new Vector3(0, 0f, currentPosition.z);
                     takenWasher.DOMove(desiredPosition, .5f).SetEase(Ease.OutSine);
                     continue;
                 }

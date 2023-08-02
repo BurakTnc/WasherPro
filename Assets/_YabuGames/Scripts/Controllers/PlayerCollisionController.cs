@@ -1,4 +1,5 @@
 using System;
+using _YabuGames.Scripts.Objects;
 using _YabuGames.Scripts.Signals;
 using UnityEngine;
 
@@ -29,7 +30,11 @@ namespace _YabuGames.Scripts.Controllers
         {
             if (other.CompareTag("DirtyPoint"))
             {
-                Destroy(other.gameObject);
+                if (other.TryGetComponent(out DirtPoint dirtPoint))
+                {
+                    dirtPoint.InitNextPosition();
+                }
+                //Destroy(other.gameObject);
                 LevelSignals.Instance.OnCleanDirt?.Invoke();
             }
             if (other.CompareTag("Gate"))

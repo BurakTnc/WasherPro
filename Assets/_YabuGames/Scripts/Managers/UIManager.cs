@@ -96,6 +96,7 @@ namespace _YabuGames.Scripts.Managers
         public void DrillButton()
         {
             LevelSignals.Instance.OnDrillStart?.Invoke();
+            gamePanel.SetActive(false);
         }
         public void PlayButton()
         {
