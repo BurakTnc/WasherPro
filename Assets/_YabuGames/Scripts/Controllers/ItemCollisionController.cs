@@ -28,7 +28,7 @@ namespace _YabuGames.Scripts.Controllers
             {
                 _grabController.Merge(other.transform);
             }
-            
+
         }
         private void OnTriggerEnter(Collider other)
         {

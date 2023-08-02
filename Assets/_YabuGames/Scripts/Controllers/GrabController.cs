@@ -42,7 +42,7 @@ namespace _YabuGames.Scripts.Controllers
         {
             
             var calculatedPos = _camera.ScreenToWorldPoint(Input.mousePosition - _offset);
-            var desiredPos = new Vector3(calculatedPos.x, .1f, calculatedPos.z);
+            var desiredPos = new Vector3(calculatedPos.x, -.3f, calculatedPos.z);
             transform.position = desiredPos;
         }
 
@@ -72,7 +72,7 @@ namespace _YabuGames.Scripts.Controllers
             var index = grid.GetSiblingIndex();
             
             //LevelSignals.Instance.OnNewGrid?.Invoke(_gridIndex,index);
-            _previousPos = new Vector3(placedPosition.x, .1f, placedPosition.z);
+            _previousPos = new Vector3(placedPosition.x, -.3f, placedPosition.z);
             transform.DOMove(_previousPos, .5f).SetEase(Ease.OutBack)
                 .OnComplete(() => _isMoving = false);
 
