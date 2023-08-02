@@ -71,5 +71,10 @@ namespace _YabuGames.Scripts.Controllers
             washer.transform.SetParent(transform);
             washers.Add(washer);
         }
+
+        public List<GameObject> GetWashers()
+        {
+            return washers;
+        }
     }
 }

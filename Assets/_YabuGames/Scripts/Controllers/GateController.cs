@@ -30,6 +30,7 @@ namespace _YabuGames.Scripts.Controllers
         private void Start()
         {
            // SetGateVisuals();
+           UpdateInterface();
         }
 
         private void SetGateVisuals()
@@ -57,16 +58,16 @@ namespace _YabuGames.Scripts.Controllers
             switch (gateMode)
             {
                 case GateMode.Speed:
-                    speed += 0.01f;
-                    _gateVisuals.SetGateColor(speed>=0);
+                    speed += 0.3f;
+                   // _gateVisuals.SetGateColor(speed>=0);
                     break;
                 case GateMode.Power:
-                    power += 0.01f;
-                    _gateVisuals.SetGateColor(power>=0);
+                    power += 0.3f;
+                    //_gateVisuals.SetGateColor(power>=0);
                     break;
                 case GateMode.Range:
-                    _gateVisuals.SetGateColor(range>=0);
-                    range += 0.01f;
+                   // _gateVisuals.SetGateColor(range>=0);
+                    range += 0.3f;
                     break;
                 default:
                     break;
@@ -105,19 +106,19 @@ namespace _YabuGames.Scripts.Controllers
                 case GateMode.Speed:
                     var signFire = Mathf.Sign(speed) > 0 ? "+" : "";
                     headlineText.text = "SPEED";
-                    gateText.text = signFire +(speed*10).ToString("0");
+                    gateText.text = signFire +(speed).ToString("0");
                     break; 
                 
                 case GateMode.Power:
                     var signDamage = Mathf.Sign(power) > 0 ? "+" : "";
                     headlineText.text = "POWER";
-                    gateText.text =signDamage + (power*10).ToString("0");
+                    gateText.text =signDamage + (power).ToString("0");
                     break;
                 
                 case GateMode.Range:
                     var signRange = Mathf.Sign(range) > 0 ? "+" : "";
                     headlineText.text = "RANGE";
-                    gateText.text = signRange + (range*10).ToString("0");
+                    gateText.text = signRange + (range).ToString("0");
                     break;
                 
                 default:

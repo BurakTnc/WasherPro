@@ -116,5 +116,10 @@ namespace _YabuGames.Scripts.Controllers
             _playerRoot.SetActiveWasher(this.gameObject);
             LevelSignals.Instance.OnRunStart?.Invoke();
         }
+
+        public WasherController GetWasherComponent()
+        {
+            return transform.GetChild(level).GetComponent<WasherController>();
+        }
     }
 }

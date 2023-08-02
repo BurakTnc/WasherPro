@@ -69,22 +69,30 @@ namespace _YabuGames.Scripts.Controllers
             dirt.transform.position += Vector3.up * (washingForce / 2);
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerStay(Collider other)
         {
             if (other.CompareTag("Dirt"))
             {
                 CleanTheDirt(other.transform);
             }
+
+            if (other.CompareTag("Gate"))
+            {
+                if (other.TryGetComponent(out GateController gate))
+                {
+                    gate.IncreaseGateStats();
+                }
+            }
         }
 
         public void IncreasePower(float damage)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void IncreaseRange(float range)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

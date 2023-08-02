@@ -4365,7 +4365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterHose: {fileID: 2346499586854718972}
   rope: {fileID: 1986975356}
-  washingForce: 0.01
+  washingForce: 0.003
 --- !u!65 &4387646581647730498
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5402,7 +5402,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6472321747888860571}
   m_LocalRotation: {x: 0.00000001545431, y: 0.000000015454306, z: 0.70710665, w: 0.7071069}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.6, y: 0, z: -0}
   m_LocalScale: {x: 300.62042, y: 300.62042, z: 300.62042}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5843,7 +5843,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterHose: {fileID: 4640767151208255903}
   rope: {fileID: 102683745}
-  washingForce: 0.01
+  washingForce: 0.007
 --- !u!4 &4190694913116777761 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a6c64c29cf31541b9abd64e8fb513923, type: 3}

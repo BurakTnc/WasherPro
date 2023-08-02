@@ -8,9 +8,9 @@ namespace _YabuGames.Scripts.Controllers
     {
         public static bool OnTrap;
 
-        [SerializeField] private float xPosClamp, speedSideways, speed, cleaningSpeed;
+        [SerializeField] private float xPosClamp, speedSideways, speed, cleaningSpeed, cleaningSidewaysSpeed;
 
-        private float _currentSpeed;
+        private float _currentSpeed, _currentSidewaysSpeed;
         private bool _isCleaning;
         private Rigidbody _rb;
         private Vector3 _pos1, _pos2;
@@ -22,6 +22,7 @@ namespace _YabuGames.Scripts.Controllers
             _rb = GetComponentInChildren<Rigidbody>();
             _isGameRunning = _holding = OnTrap = false;
             _currentSpeed = speed;
+            _currentSidewaysSpeed = speedSideways;
         }
 
        #region Subscribtions
@@ -68,6 +69,7 @@ namespace _YabuGames.Scripts.Controllers
        {
            _isCleaning = !_isCleaning;
            _currentSpeed = _isCleaning ? cleaningSpeed : speed;
+           _currentSidewaysSpeed = _isCleaning ? cleaningSidewaysSpeed : speedSideways;
        }
 
        private void Run()
@@ -103,7 +105,7 @@ namespace _YabuGames.Scripts.Controllers
                     Vector3 delta = _pos1 - _pos2;
                     _pos1 = _pos2;
                     delta = new Vector3(Mathf.Clamp(delta.x, -0.05f, 0.05f), delta.y);
-                    _rb.velocity = new Vector3(Mathf.Lerp(_rb.velocity.x, -delta.x * speedSideways, 0.2f), _rb.velocity.y, _currentSpeed);
+                    _rb.velocity = new Vector3(Mathf.Lerp(_rb.velocity.x, -delta.x * _currentSidewaysSpeed, 0.2f), _rb.velocity.y, _currentSpeed);
                 }
                 else
                 {
