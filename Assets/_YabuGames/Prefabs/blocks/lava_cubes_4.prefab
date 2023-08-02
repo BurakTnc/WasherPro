@@ -340,6 +340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleStrength: 0
+  destroyParticle: {fileID: 3725971715257968543}
 --- !u!1 &9107440545586487447
 GameObject:
   m_ObjectHideFlags: 0

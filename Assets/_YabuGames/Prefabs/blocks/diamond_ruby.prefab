@@ -5210,3 +5210,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleStrength: 0
+  destroyParticle: {fileID: 7040982488430116815}
