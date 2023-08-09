@@ -21,9 +21,8 @@ namespace _YabuGames.Scripts.Controllers
         public void SetGridConditions()
         {
             _isOccupied = !_isOccupied;
-            //_gridManager.ChangeConditions(_gridIndex, _isOccupied);
+            _gridManager.ChangeGridCondition(transform.GetSiblingIndex(),_isOccupied);
             _collider.enabled = !_isOccupied;
-            
         }
         
     }

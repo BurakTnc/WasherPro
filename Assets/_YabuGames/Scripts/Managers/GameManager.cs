@@ -1,3 +1,4 @@
+using _YabuGames.Scripts.Controllers;
 using _YabuGames.Scripts.Signals;
 using UnityEngine;
 
@@ -39,11 +40,13 @@ namespace _YabuGames.Scripts.Managers
         private void Subscribe()
         {
             CoreGameSignals.Instance.OnSave += Save;
+            LevelSignals.Instance.OnSpawnNewItem += SpawnNewItem;
         }
 
         private void UnSubscribe()
         {
             CoreGameSignals.Instance.OnSave -= Save;
+            LevelSignals.Instance.OnSpawnNewItem -= SpawnNewItem;
         }
 
         #endregion
@@ -58,6 +61,14 @@ namespace _YabuGames.Scripts.Managers
             PlayerPrefs.SetInt("money",_money);
         }
 
+        private void SpawnNewItem(Transform pickedGrid,int pickedGridIndex)
+        {
+            var item = Instantiate(Resources.Load<GameObject>("Spawnables/Washers")).transform;
+            var component = item.GetComponent<GrabController>();
+            
+            component.PlaceSpawnedItem(pickedGrid.position, pickedGrid);
+
+        }
         public void ArrangeMoney(int value)
         {
             _money += value;
@@ -67,5 +78,6 @@ namespace _YabuGames.Scripts.Managers
         {
             return _money < 0 ? 0 : _money;
         }
+        
     }
 }

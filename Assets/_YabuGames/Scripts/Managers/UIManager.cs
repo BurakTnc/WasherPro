@@ -1,4 +1,5 @@
 using System;
+using _YabuGames.Scripts.Controllers;
 using _YabuGames.Scripts.Signals;
 using TMPro;
 using UnityEngine;
@@ -27,7 +28,6 @@ namespace _YabuGames.Scripts.Managers
             Instance = this;
 
             #endregion
-
         }
 
         private void OnEnable()
@@ -93,10 +93,21 @@ namespace _YabuGames.Scripts.Managers
             HapticManager.Instance.PlayFailureHaptic();
         }
 
+        private void SpawnNewItem()
+        {
+            
+        }
         public void DrillButton()
         {
             LevelSignals.Instance.OnDrillStart?.Invoke();
             gamePanel.SetActive(false);
+        }
+
+        public void BuyItemButton()
+        {
+            var pickedGrid = GridManager.Instance.PickAGrid();
+            var pickedGridIndex = GridManager.Instance.GetPickedGridIndex();
+            LevelSignals.Instance.OnSpawnNewItem?.Invoke(pickedGrid, pickedGridIndex);
         }
         public void PlayButton()
         {
