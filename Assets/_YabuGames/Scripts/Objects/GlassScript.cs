@@ -9,6 +9,7 @@ namespace _YabuGames.Scripts.Objects
     {
         [SerializeField] private float fillingSpeed = 0.01f;
         [SerializeField] private Transform liquid;
+        [SerializeField] private GameObject splashEffect;
 
         private BoxCollider _collider;
 
@@ -28,6 +29,23 @@ namespace _YabuGames.Scripts.Objects
                 _collider.enabled = false;
                 CollectTheGlass();
             }
+        }
+
+        public void EnableSplashEffect()
+        {
+            splashEffect.SetActive(true);
+        }
+
+        public void DisableSplashEffect()
+        {
+            splashEffect.SetActive(false);
+        }
+
+        public void FixSplashPosition(Vector3 splashPosition)
+        {
+            var desiredPos = new Vector3(splashPosition.x, splashPosition.y, transform.position.z);
+
+            splashEffect.transform.position = desiredPos;
         }
 
         private void CollectTheGlass()

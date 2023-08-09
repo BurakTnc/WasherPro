@@ -14,7 +14,6 @@ namespace _YabuGames.Scripts.Objects
         private void GoToNextPosition()
         {
             transform.root.position = nextPosition.position;
-            Debug.Log("dirt");
         }
     }
 }

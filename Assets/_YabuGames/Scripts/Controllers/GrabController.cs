@@ -53,11 +53,18 @@ namespace _YabuGames.Scripts.Controllers
             _canMerge = false;
         }
 
-        public void LeaveGridByMerge()
+        public void PlaceSpawnedItem(Vector3 placedPosition, Transform grid)
         {
-           // LevelSignals.Instance.OnGridLeave?.Invoke(_gridIndex);
+            if (grid.TryGetComponent( out GridController gridController))
+            {
+                _drillerItem.ChangeOldGridCondition(grid);
+                gridController.SetGridConditions();
+            }
+            
+            _previousPos = new Vector3(placedPosition.x, -.3f, placedPosition.z);
+            transform.DOMove(_previousPos, .5f).SetEase(Ease.OutBack)
+                .OnComplete(() => _isMoving = false);
         }
-        
         public void PlaceCube(Vector3 placedPosition, Transform grid)
         {
             if(!_canMerge)
@@ -69,9 +76,6 @@ namespace _YabuGames.Scripts.Controllers
                 gridController.SetGridConditions();
             }
             
-            var index = grid.GetSiblingIndex();
-            
-            //LevelSignals.Instance.OnNewGrid?.Invoke(_gridIndex,index);
             _previousPos = new Vector3(placedPosition.x, -.3f, placedPosition.z);
             transform.DOMove(_previousPos, .5f).SetEase(Ease.OutBack)
                 .OnComplete(() => _isMoving = false);
@@ -86,7 +90,7 @@ namespace _YabuGames.Scripts.Controllers
                     return;
                 if(!_canMerge)
                     return;
-                
+                _drillerItem.ChangeOldGridCondition(null);
                 item.Merge(transform.gameObject);
             }
         }

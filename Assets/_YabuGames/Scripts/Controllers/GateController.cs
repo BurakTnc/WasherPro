@@ -16,6 +16,7 @@ namespace _YabuGames.Scripts.Controllers
         [SerializeField] private float range;
         [SerializeField] private float power;
         [SerializeField] private TextMeshPro headlineText;
+        [SerializeField] private GameObject splashEffect;
 
         private bool _isLocked;
         private GateVisuals _gateVisuals;
@@ -98,6 +99,21 @@ namespace _YabuGames.Scripts.Controllers
             transform.DOMoveY(-5, goDownDuration).SetEase(Ease.InBack);
 
 
+        }
+
+        public void EnableSplashEffect()
+        {
+            splashEffect.SetActive(true);
+        }
+        public void DisableSplashEffect()
+        {
+            splashEffect.SetActive(false);
+        }
+        public void FixSplashPosition(Vector3 splashPosition)
+        {
+            var desiredPos = new Vector3(splashPosition.x, splashPosition.y, transform.position.z);
+            
+            splashEffect.transform.position = desiredPos;
         }
         private void UpdateInterface()
         {

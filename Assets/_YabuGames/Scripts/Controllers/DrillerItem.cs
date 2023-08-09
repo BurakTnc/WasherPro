@@ -59,7 +59,7 @@ namespace _YabuGames.Scripts.Controllers
         }
         private void StartDrill()
         {
-            _rb.velocity = Vector3.forward * (moveSpeed * Time.deltaTime);
+            _rb.velocity = Vector3.forward * (moveSpeed);
             levelText.gameObject.SetActive(false);
         }
 
@@ -81,6 +81,8 @@ namespace _YabuGames.Scripts.Controllers
                 gridController.SetGridConditions();
             }
            
+            if(!newGrid)
+                return;
             _currentGrid = newGrid;
         }
 
@@ -91,7 +93,7 @@ namespace _YabuGames.Scripts.Controllers
 
         public void Explode()
         {
-            Destroy(gameObject); //test
+            Destroy(gameObject);
         }
 
         public void Merge(GameObject mergedObj)
@@ -123,5 +125,6 @@ namespace _YabuGames.Scripts.Controllers
         {
             return transform.GetChild(level).GetComponent<WasherController>();
         }
+        
     }
 }
