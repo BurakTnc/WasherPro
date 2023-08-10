@@ -11,7 +11,8 @@ namespace _YabuGames.Scripts.Signals
         public UnityAction OnDrillStart = delegate { };
         public UnityAction OnRunStart = delegate { };
         public UnityAction OnCleanDirt = delegate { };
-        public UnityAction<Transform, int> OnSpawnNewItem = delegate { };
+        public UnityAction<Transform> OnSpawnNewItem = delegate { };
+        public UnityAction OnMerge =delegate { };
 
 
             private void Awake()

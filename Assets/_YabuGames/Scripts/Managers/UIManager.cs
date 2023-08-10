@@ -92,13 +92,10 @@ namespace _YabuGames.Scripts.Managers
             gamePanel.SetActive(true);
             HapticManager.Instance.PlayFailureHaptic();
         }
-
-        private void SpawnNewItem()
-        {
-            
-        }
+        
         public void DrillButton()
         {
+            CoreGameSignals.Instance.OnSave?.Invoke();
             LevelSignals.Instance.OnDrillStart?.Invoke();
             gamePanel.SetActive(false);
         }
@@ -106,8 +103,8 @@ namespace _YabuGames.Scripts.Managers
         public void BuyItemButton()
         {
             var pickedGrid = GridManager.Instance.PickAGrid();
-            var pickedGridIndex = GridManager.Instance.GetPickedGridIndex();
-            LevelSignals.Instance.OnSpawnNewItem?.Invoke(pickedGrid, pickedGridIndex);
+            //var pickedGridIndex = GridManager.Instance.GetPickedGridIndex();
+            LevelSignals.Instance.OnSpawnNewItem?.Invoke(pickedGrid);
         }
         public void PlayButton()
         {

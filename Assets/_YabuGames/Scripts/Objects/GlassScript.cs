@@ -11,6 +11,7 @@ namespace _YabuGames.Scripts.Objects
         [SerializeField] private Transform liquid;
         [SerializeField] private GameObject splashEffect;
 
+        private bool _isCollected;
         private BoxCollider _collider;
 
         private void Awake()
@@ -20,13 +21,15 @@ namespace _YabuGames.Scripts.Objects
 
         public void Fill()
         {
+            if(_isCollected)
+                return;
             if (liquid.localScale.y<1)
             {
                 liquid.localScale += Vector3.up * fillingSpeed;
             }
             else
             {
-                _collider.enabled = false;
+                _isCollected = true;
                 CollectTheGlass();
             }
         }

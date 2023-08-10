@@ -34,17 +34,19 @@ namespace _YabuGames.Scripts
             // }
         }
 
-        public void CleanTheDirt(Transform washer)
+        public void CleanTheDirt(Transform washer,float washingForce)
         {
             if (Physics.Raycast(washer.position+cleaningErrorOffset, transform.TransformDirection(washer.forward), out RaycastHit hit))
             {
                 Debug.Log(hit.transform.name);
+                
+                cleaningErrorOffset.x = washingForce / 5;
                 var textureCoord = hit.textureCoord;
 
                 var pixelX = (int)(textureCoord.x * _templateDirtMask.width);
                 var pixelY = (int)(textureCoord.y * _templateDirtMask.height);
 
-                for (var x = 0; x < brush.width/2; x++)
+                for (var x = 0; x < brush.width * washingForce; x++) 
                 {
                     for (var y = 0; y < brush.height/2; y++)
                     {
@@ -56,7 +58,7 @@ namespace _YabuGames.Scripts
                             new Color(0, pixelDirtMask.g * pixelDirt.g, 0));
                     }
                 }
-
+                
                 _templateDirtMask.Apply();
             }
         }

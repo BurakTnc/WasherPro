@@ -80,7 +80,7 @@ namespace _YabuGames.Scripts.Controllers
         {
             if(_isLocked)
                 return;
-            _isLocked = true;
+            //_isLocked = true;
             HapticManager.Instance.PlayRigidHaptic();
             switch (gateMode)
             {

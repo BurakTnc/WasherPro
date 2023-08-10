@@ -127,7 +127,7 @@ namespace _YabuGames.Scripts.Controllers
                // CleanTheDirt(other.transform);
                if (other.transform.root.TryGetComponent(out Clean clean))
                {
-                   clean.CleanTheDirt(transform);
+                   clean.CleanTheDirt(transform,washingForce);
                    //Debug.Log("dirt");
                }
             }
@@ -175,9 +175,9 @@ namespace _YabuGames.Scripts.Controllers
 
         public void IncreasePower(float force)
         {
-            washingForce += force / 2000;
-            if (washingForce > 0.1f)
-                washingForce = 0.1f;
+            washingForce += force / 1000;
+            if (washingForce > 4)
+                washingForce = 4;
         }
 
         public void IncreaseSpeed(float speed)
@@ -192,7 +192,7 @@ namespace _YabuGames.Scripts.Controllers
             desiredSize.z /= 2;
             _collider.center = desiredSize;
             
-            var desiredWaterScale = _defaultWaterHoseScale + Vector3.forward * (range / colliderScaleErrorFix / 15);
+            var desiredWaterScale = _defaultWaterHoseScale + Vector3.forward * (range / colliderScaleErrorFix / 22);
             _defaultWaterHoseScale = desiredWaterScale;
             
         }

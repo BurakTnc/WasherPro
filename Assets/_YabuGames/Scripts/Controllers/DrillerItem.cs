@@ -11,7 +11,7 @@ namespace _YabuGames.Scripts.Controllers
     public class DrillerItem : MonoBehaviour
     {
         [SerializeField] private Vector3 cleaningRotation;
-        [SerializeField] private int level = 1;
+        [SerializeField] private int level = 0;
         [SerializeField] private float moveSpeed;
         [SerializeField] private GameObject[] items;
         [SerializeField] private TextMeshPro levelText;
@@ -86,7 +86,19 @@ namespace _YabuGames.Scripts.Controllers
             _currentGrid = newGrid;
         }
 
+        public void Init(int initLevel = 0)
+        {
+            level = initLevel;
+            items[0].SetActive(false);
+            items[level].SetActive(true);
+            SetLevelText();
+        }
         public int GetDrillForce()
+        {
+            return level;
+        }
+
+        public int GetLevel()
         {
             return level;
         }
@@ -98,6 +110,7 @@ namespace _YabuGames.Scripts.Controllers
 
         public void Merge(GameObject mergedObj)
         {
+            LevelSignals.Instance.OnMerge?.Invoke();
             items[level].SetActive(false);
             mergedObj.SetActive(false);
             level++;

@@ -1,6 +1,10 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using _YabuGames.Scripts.Controllers;
 using _YabuGames.Scripts.Signals;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _YabuGames.Scripts.Managers
 {
@@ -8,7 +12,12 @@ namespace _YabuGames.Scripts.Managers
     {
         public static GameManager Instance;
 
-        private int _money;
+        public int money;
+
+        private int _washerCount;
+        private int _level;
+        private int _mergedWashers;
+        private readonly List<DrillerItem> _washerList = new List<DrillerItem>();
 
         private void Awake()
         {
@@ -26,6 +35,17 @@ namespace _YabuGames.Scripts.Managers
             GetValues();
         }
 
+        private IEnumerator Start()
+        {
+            for (var i = 0; i < _washerCount; i++)
+            {
+                yield return new WaitForSeconds(.15f);
+                var grid = GridManager.Instance.PickAGrid();
+                var washerLevel = PlayerPrefs.GetInt($"washerLevel{i}");
+                InitWashers(grid,washerLevel);
+            }
+        }
+
         #region Subscribtions
         private void OnEnable()
         {
@@ -41,42 +61,69 @@ namespace _YabuGames.Scripts.Managers
         {
             CoreGameSignals.Instance.OnSave += Save;
             LevelSignals.Instance.OnSpawnNewItem += SpawnNewItem;
+            LevelSignals.Instance.OnMerge += DecreaseWasherCount;
         }
 
         private void UnSubscribe()
         {
             CoreGameSignals.Instance.OnSave -= Save;
             LevelSignals.Instance.OnSpawnNewItem -= SpawnNewItem;
+            LevelSignals.Instance.OnMerge -= DecreaseWasherCount;
         }
 
         #endregion
 
         private void GetValues()
         {
-            _money = PlayerPrefs.GetInt("money", 0);
+            money = PlayerPrefs.GetInt("money", 0);
+            _level = PlayerPrefs.GetInt("level", 0);
+            _washerCount = PlayerPrefs.GetInt("washerCount", 1);
         }
 
         private void Save()
         {
-            PlayerPrefs.SetInt("money",_money);
+            _washerCount = _washerList.Count - _mergedWashers;
+            PlayerPrefs.SetInt("money",money);
+            PlayerPrefs.SetInt("level",_level);
+            PlayerPrefs.SetInt("washerCount", _washerCount);
+            
+            for (var i = 0; i < _washerList.Count; i++)
+            {
+                PlayerPrefs.SetInt($"washerLevel{i}",_washerList[i].GetLevel());
+            }
         }
 
-        private void SpawnNewItem(Transform pickedGrid,int pickedGridIndex)
+        private void DecreaseWasherCount()
         {
-            var item = Instantiate(Resources.Load<GameObject>("Spawnables/Washers")).transform;
-            var component = item.GetComponent<GrabController>();
+            _mergedWashers++;
+        }
+        private void SpawnNewItem(Transform pickedGrid)
+        {
+            var item = Instantiate(Resources.Load<GameObject>("Spawnables/newhoes")).transform;
+            var grabController = item.GetComponent<GrabController>();
+            var washerComponent = item.GetComponent<DrillerItem>();
             
-            component.PlaceSpawnedItem(pickedGrid.position, pickedGrid);
-
+            _washerList.Add(washerComponent);
+            grabController.PlaceSpawnedItem(pickedGrid.position, pickedGrid);
+        }
+        private void InitWashers(Transform pickedGrid,int washerLevel)
+        {
+            var item = Instantiate(Resources.Load<GameObject>("Spawnables/newhoes")).transform;
+            var grabController = item.GetComponent<GrabController>();
+            var washerComponent = item.GetComponent<DrillerItem>();
+            
+            washerComponent.Init(washerLevel);
+            _washerList.Add(washerComponent);
+            grabController.PlaceSpawnedItem(pickedGrid.position, pickedGrid);
         }
         public void ArrangeMoney(int value)
         {
-            _money += value;
+            money += value;
         }
 
         public int GetMoney()
         {
-            return _money < 0 ? 0 : _money;
+            return money < 0 ? 0 : money;
         }
         
     }

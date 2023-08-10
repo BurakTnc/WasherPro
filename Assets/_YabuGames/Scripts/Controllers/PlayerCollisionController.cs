@@ -24,6 +24,7 @@ namespace _YabuGames.Scripts.Controllers
                 var component = selected.GetComponent<DrillerItem>().GetWasherComponent();
                  gate.Selection(component);
                 
+                
             }
         }
         private void OnTriggerEnter(Collider other)

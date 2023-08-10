@@ -331,15 +331,14 @@ MonoBehaviour:
   level: 0
   moveSpeed: 4
   items:
-  - {fileID: 203876538816453938}
-  - {fileID: 2073980779048923815}
-  - {fileID: 203876539427754865}
-  - {fileID: 203876538939406149}
-  - {fileID: 203876539306591429}
-  - {fileID: 203876538125762291}
-  - {fileID: 0}
-  - {fileID: 203876539848183590}
-  - {fileID: 203876538862201180}
+  - {fileID: 3726683459337342387}
+  - {fileID: 3726683459462793043}
+  - {fileID: 3726683460553161122}
+  - {fileID: 3726683460813518865}
+  - {fileID: 3726683459922642961}
+  - {fileID: 7634664945067115713}
+  - {fileID: 1939743565777998279}
+  - {fileID: 7878432815735512778}
   levelText: {fileID: 1014780445561241390}
 --- !u!54 &50252162371413853
 Rigidbody:
@@ -602,9 +601,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterHose: {fileID: 4662035746466712301}
   rope: {fileID: 3726683461061357797}
-  washingForce: 0.01
+  washingForce: 0.5
   scaleErrorFix: 35
-  colliderScaleErrorFix: 0
+  colliderScaleErrorFix: 10
 --- !u!65 &6342744948424247056
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1184,7 +1183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterHose: {fileID: 8345319636653177654}
   rope: {fileID: 3726683459817766600}
-  washingForce: 0.0006
+  washingForce: 0.5
   scaleErrorFix: 35
   colliderScaleErrorFix: 10
 --- !u!65 &3726683459337342348
@@ -1598,9 +1597,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterHose: {fileID: 1380254525277841237}
   rope: {fileID: 3726683460622023893}
-  washingForce: 0.009
+  washingForce: 0.5
   scaleErrorFix: 35
-  colliderScaleErrorFix: 0
+  colliderScaleErrorFix: 10
 --- !u!65 &3726683459462793004
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2354,9 +2353,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterHose: {fileID: 5982769465740304346}
   rope: {fileID: 3726683461332677668}
-  washingForce: 0.01
+  washingForce: 0.5
   scaleErrorFix: 35
-  colliderScaleErrorFix: 0
+  colliderScaleErrorFix: 10
 --- !u!65 &3726683459922642962
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2850,9 +2849,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterHose: {fileID: 8532773957063937315}
   rope: {fileID: 3726683459555544327}
-  washingForce: 0.01
+  washingForce: 0.5
   scaleErrorFix: 35
-  colliderScaleErrorFix: 0
+  colliderScaleErrorFix: 10
 --- !u!65 &3726683460553161123
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3807,9 +3806,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterHose: {fileID: 7502768686403034891}
   rope: {fileID: 3726683461221407825}
-  washingForce: 0.007
+  washingForce: 0.5
   scaleErrorFix: 35
-  colliderScaleErrorFix: 0
+  colliderScaleErrorFix: 10
 --- !u!65 &3726683460813518866
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5353,9 +5352,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterHose: {fileID: 2218049611186188418}
   rope: {fileID: 3726683460616898927}
-  washingForce: 0.01
+  washingForce: 0.5
   scaleErrorFix: 35
-  colliderScaleErrorFix: 0
+  colliderScaleErrorFix: 10
 --- !u!65 &7634664945067115714
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5449,9 +5448,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterHose: {fileID: 4619877459098862896}
   rope: {fileID: 3726683460722780088}
-  washingForce: 0.01
+  washingForce: 0.5
   scaleErrorFix: 35
-  colliderScaleErrorFix: 0
+  colliderScaleErrorFix: 10
 --- !u!65 &9039139483387273753
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20389,7 +20388,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 46
+  m_VersionIndex: 49
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -20476,11 +20475,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27414163e90ed470eb7765ac26e0b598, type: 3}
---- !u!1 &203876539848183590 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 27414163e90ed470eb7765ac26e0b598, type: 3}
-  m_PrefabInstance: {fileID: 1014780444704698999}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &693413662657844636 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 27414163e90ed470eb7765ac26e0b598, type: 3}
@@ -20583,11 +20577,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b257065edeab046efbe55f5194c8d496, type: 3}
---- !u!1 &203876538862201180 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b257065edeab046efbe55f5194c8d496, type: 3}
-  m_PrefabInstance: {fileID: 1014780444793099277}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &693413662544278502 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b257065edeab046efbe55f5194c8d496, type: 3}
@@ -20670,11 +20659,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6c64c29cf31541b9abd64e8fb513923, type: 3}
---- !u!1 &203876538816453938 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a6c64c29cf31541b9abd64e8fb513923, type: 3}
-  m_PrefabInstance: {fileID: 1014780444882624611}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &693413662446094216 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a6c64c29cf31541b9abd64e8fb513923, type: 3}
@@ -20757,11 +20741,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adc4956162a8f4bd0ae30e1de3b49c29, type: 3}
---- !u!1 &203876538939406149 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: adc4956162a8f4bd0ae30e1de3b49c29, type: 3}
-  m_PrefabInstance: {fileID: 1014780445005040148}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &693413662357237247 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: adc4956162a8f4bd0ae30e1de3b49c29, type: 3}
@@ -20844,11 +20823,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 514c9500540d941bc9db8b303a2cdebf, type: 3}
---- !u!1 &203876539306591429 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 514c9500540d941bc9db8b303a2cdebf, type: 3}
-  m_PrefabInstance: {fileID: 1014780445237901716}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &693413662133034623 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 514c9500540d941bc9db8b303a2cdebf, type: 3}
