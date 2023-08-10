@@ -14,7 +14,7 @@ namespace _YabuGames.Scripts.Managers
 
         public int money;
 
-        private int _washerCount;
+        public int _washerCount;
         private int _level;
         private int _mergedWashers;
         private readonly List<DrillerItem> _washerList = new List<DrillerItem>();
@@ -37,13 +37,18 @@ namespace _YabuGames.Scripts.Managers
 
         private IEnumerator Start()
         {
-            for (var i = 0; i < _washerCount; i++)
+            var temp = _washerCount;
+            _washerCount = 0;
+            for (var i = 0; i < temp; i++)
             {
                 yield return new WaitForSeconds(.15f);
                 var grid = GridManager.Instance.PickAGrid();
                 var washerLevel = PlayerPrefs.GetInt($"washerLevel{i}");
                 InitWashers(grid,washerLevel);
             }
+
+            LevelSignals.Instance.OnInit?.Invoke();
+
         }
 
         #region Subscribtions
@@ -60,15 +65,17 @@ namespace _YabuGames.Scripts.Managers
         private void Subscribe()
         {
             CoreGameSignals.Instance.OnSave += Save;
+            CoreGameSignals.Instance.OnLevelWin += Win;
             LevelSignals.Instance.OnSpawnNewItem += SpawnNewItem;
-            LevelSignals.Instance.OnMerge += DecreaseWasherCount;
+            //LevelSignals.Instance.OnMerge += DecreaseWasherCount;
         }
 
         private void UnSubscribe()
         {
             CoreGameSignals.Instance.OnSave -= Save;
+            CoreGameSignals.Instance.OnLevelWin -= Win;
             LevelSignals.Instance.OnSpawnNewItem -= SpawnNewItem;
-            LevelSignals.Instance.OnMerge -= DecreaseWasherCount;
+            //LevelSignals.Instance.OnMerge -= DecreaseWasherCount;
         }
 
         #endregion
@@ -82,7 +89,7 @@ namespace _YabuGames.Scripts.Managers
 
         private void Save()
         {
-            _washerCount = _washerList.Count - _mergedWashers;
+           // _washerCount = _washerList.Count - _mergedWashers;
             PlayerPrefs.SetInt("money",money);
             PlayerPrefs.SetInt("level",_level);
             PlayerPrefs.SetInt("washerCount", _washerCount);
@@ -93,9 +100,14 @@ namespace _YabuGames.Scripts.Managers
             }
         }
 
-        private void DecreaseWasherCount()
+        public void DecreaseWasherCount()
         {
-            _mergedWashers++;
+            _washerCount--;
+        }
+
+        public void IncreaseWasherCount()
+        {
+            _washerCount++;
         }
         private void SpawnNewItem(Transform pickedGrid)
         {
@@ -116,9 +128,21 @@ namespace _YabuGames.Scripts.Managers
             _washerList.Add(washerComponent);
             grabController.PlaceSpawnedItem(pickedGrid.position, pickedGrid);
         }
+
+        private void Win()
+        {
+            _level++;
+            money += 100;
+            CoreGameSignals.Instance.OnSave?.Invoke();
+        }
         public void ArrangeMoney(int value)
         {
             money += value;
+        }
+
+        public int GetWasherCount()
+        {
+            return _washerCount;
         }
 
         public int GetMoney()

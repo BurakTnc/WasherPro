@@ -12,7 +12,7 @@ namespace _YabuGames.Scripts.Signals
         public UnityAction OnRunStart = delegate { };
         public UnityAction OnCleanDirt = delegate { };
         public UnityAction<Transform> OnSpawnNewItem = delegate { };
-        public UnityAction OnMerge =delegate { };
+        public UnityAction OnInit =delegate { };
 
 
             private void Awake()

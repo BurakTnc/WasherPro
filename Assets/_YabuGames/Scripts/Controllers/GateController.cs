@@ -24,13 +24,13 @@ namespace _YabuGames.Scripts.Controllers
 
         private void Awake()
         {
-           // _gateVisuals = GetComponent<GateVisuals>();
+            _gateVisuals = GetComponent<GateVisuals>();
             _boxCollider = GetComponent<BoxCollider>();
         }
 
         private void Start()
         {
-           // SetGateVisuals();
+            SetGateVisuals();
            UpdateInterface();
         }
 
@@ -60,14 +60,14 @@ namespace _YabuGames.Scripts.Controllers
             {
                 case GateMode.Speed:
                     speed += increaseValue;
-                   // _gateVisuals.SetGateColor(speed>=0);
+                    _gateVisuals.SetGateColor(speed>=0);
                     break;
                 case GateMode.Power:
                     power += increaseValue;
-                    //_gateVisuals.SetGateColor(power>=0);
+                    _gateVisuals.SetGateColor(power>=0);
                     break;
                 case GateMode.Range:
-                   // _gateVisuals.SetGateColor(range>=0);
+                    _gateVisuals.SetGateColor(range>=0);
                     range += increaseValue;
                     break;
                 default:

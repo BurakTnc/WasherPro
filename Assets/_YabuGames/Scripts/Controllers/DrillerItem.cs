@@ -1,4 +1,5 @@
 using System;
+using _YabuGames.Scripts.Managers;
 using _YabuGames.Scripts.Signals;
 using DG.Tweening;
 using TMPro;
@@ -34,11 +35,13 @@ namespace _YabuGames.Scripts.Controllers
         private void OnEnable()
         {
             Subscribe();
+            GameManager.Instance.IncreaseWasherCount();
         }
 
         private void OnDisable()
         {
             UnSubscribe();
+            GameManager.Instance.DecreaseWasherCount();
         }
 
         private void Subscribe()
@@ -110,7 +113,8 @@ namespace _YabuGames.Scripts.Controllers
 
         public void Merge(GameObject mergedObj)
         {
-            LevelSignals.Instance.OnMerge?.Invoke();
+            if (level >= items.Length - 1) 
+                return;
             items[level].SetActive(false);
             mergedObj.SetActive(false);
             level++;
@@ -122,6 +126,7 @@ namespace _YabuGames.Scripts.Controllers
             newObj.transform.localScale = Vector3.zero;
             newObj.SetActive(true);
             newObj.transform.DOScale(startScale, .5f).SetEase(Ease.OutBack);
+            CoreGameSignals.Instance.OnSave?.Invoke();
         }
 
 

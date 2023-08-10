@@ -3,6 +3,7 @@ using _YabuGames.Scripts.Controllers;
 using _YabuGames.Scripts.Signals;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace _YabuGames.Scripts.Managers
 {
@@ -12,6 +13,10 @@ namespace _YabuGames.Scripts.Managers
         
         [SerializeField] private GameObject mainPanel, gamePanel, winPanel, losePanel, storePanel;
         [SerializeField] private TextMeshProUGUI[] moneyText;
+        [SerializeField] private TextMeshProUGUI buyButtonText;
+        [SerializeField] private Button buyButton, goButton;
+
+        private float _buyPrice;
 
 
         private void Awake()
@@ -28,6 +33,7 @@ namespace _YabuGames.Scripts.Managers
             Instance = this;
 
             #endregion
+            GetValues();
         }
 
         private void OnEnable()
@@ -43,6 +49,9 @@ namespace _YabuGames.Scripts.Managers
         private void Start()
         {
             SetMoneyTexts();
+            UpdateButtonConditions();
+            buyButton.interactable = false;
+            goButton.interactable = true;
         }
 
         #region Subscribtions
@@ -51,6 +60,8 @@ namespace _YabuGames.Scripts.Managers
                     CoreGameSignals.Instance.OnLevelWin += LevelWin;
                     CoreGameSignals.Instance.OnLevelFail += LevelLose;
                     CoreGameSignals.Instance.OnGameStart += OnGameStart;
+                    CoreGameSignals.Instance.OnSave += Save;
+                    LevelSignals.Instance.OnInit += Save;
                 }
         
                 private void UnSubscribe()
@@ -58,9 +69,33 @@ namespace _YabuGames.Scripts.Managers
                     CoreGameSignals.Instance.OnLevelWin -= LevelWin;
                     CoreGameSignals.Instance.OnLevelFail -= LevelLose;
                     CoreGameSignals.Instance.OnGameStart -= OnGameStart;
+                    CoreGameSignals.Instance.OnSave -= Save;
+                    LevelSignals.Instance.OnInit -= Save;
                 }
 
         #endregion
+
+        private void GetValues()
+        {
+            _buyPrice = PlayerPrefs.GetFloat("buyPrice", 75);
+        }
+        
+        private void Save()
+        {
+            PlayerPrefs.SetFloat("buyPrice",_buyPrice);
+            UpdateButtonConditions();
+            SetMoneyTexts();
+            goButton.interactable = true;
+        }
+
+        private void UpdateButtonConditions()
+        {
+            var money = GameManager.Instance.GetMoney();
+            var washerCount = GameManager.Instance.GetWasherCount();
+            
+            buyButtonText.text = "$" + (int)_buyPrice;
+            buyButton.interactable = money >= _buyPrice && washerCount < 10;
+        }
         
         private void OnGameStart()
         {
@@ -103,8 +138,11 @@ namespace _YabuGames.Scripts.Managers
         public void BuyItemButton()
         {
             var pickedGrid = GridManager.Instance.PickAGrid();
-            //var pickedGridIndex = GridManager.Instance.GetPickedGridIndex();
+    
+            GameManager.Instance.money -= (int)_buyPrice;
+            _buyPrice *= 1.5f;
             LevelSignals.Instance.OnSpawnNewItem?.Invoke(pickedGrid);
+            UpdateButtonConditions();
         }
         public void PlayButton()
         {
