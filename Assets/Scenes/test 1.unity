@@ -1156,6 +1156,7 @@ MonoBehaviour:
   money: 40000
   earnedValue: 0
   _washerCount: 0
+  platforms: []
 --- !u!43 &155910011
 Mesh:
   m_ObjectHideFlags: 0
@@ -3436,7 +3437,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 669975046}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &581685540
 MonoBehaviour:
@@ -3870,7 +3871,6 @@ Transform:
   - {fileID: 1189794488}
   - {fileID: 492199110}
   - {fileID: 1483668938}
-  - {fileID: 1636517202}
   - {fileID: 581685539}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -8259,7 +8259,7 @@ MonoBehaviour:
   mainPanel: {fileID: 0}
   gamePanel: {fileID: 231048562}
   winPanel: {fileID: 692926587}
-  losePanel: {fileID: 0}
+  losePanel: {fileID: 943014930}
   storePanel: {fileID: 0}
   moneyText:
   - {fileID: 381342397}
@@ -10282,52 +10282,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4876403209510895512, guid: 977a7644b178c42788a5304d440eecd9, type: 3}
   m_PrefabInstance: {fileID: 1602108121}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1636517201
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1636517202}
-  - component: {fileID: 1636517203}
-  m_Layer: 0
-  m_Name: Level Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1636517202
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1636517201}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 669975046}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1636517203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1636517201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d69cc8642ca4f75a6186f2be2f1ba8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneID: 0
-  levelID: 0
 --- !u!1001 &1730700925
 PrefabInstance:
   m_ObjectHideFlags: 0
