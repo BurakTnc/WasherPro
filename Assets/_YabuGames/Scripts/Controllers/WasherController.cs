@@ -124,7 +124,12 @@ namespace _YabuGames.Scripts.Controllers
         {
             if (other.CompareTag("Dirt"))
             {
-                CleanTheDirt(other.transform);
+               // CleanTheDirt(other.transform);
+               if (other.transform.root.TryGetComponent(out Clean clean))
+               {
+                   clean.CleanTheDirt(transform);
+                   //Debug.Log("dirt");
+               }
             }
 
             if (other.CompareTag("Gate"))
