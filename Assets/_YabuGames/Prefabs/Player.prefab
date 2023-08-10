@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xPosClamp: 1.6
-  speedSideways: 1000
+  speedSideways: 200
   speed: 4
   cleaningSpeed: 0.5
   cleaningSidewaysSpeed: 50

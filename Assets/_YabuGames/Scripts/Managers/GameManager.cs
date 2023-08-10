@@ -40,7 +40,7 @@ namespace _YabuGames.Scripts.Managers
 
             #endregion
             GetValues();
-            //platforms[_level].SetActive(true);
+            platforms[_level].SetActive(true);
         }
 
         private IEnumerator Start()
