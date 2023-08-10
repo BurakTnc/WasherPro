@@ -14,7 +14,10 @@ namespace _YabuGames.Scripts.Managers
 
         public int money;
 
+        public int earnedValue;
         public int _washerCount;
+
+        private bool _isStarted;
         private int _level;
         private int _mergedWashers;
         private readonly List<DrillerItem> _washerList = new List<DrillerItem>();
@@ -47,6 +50,7 @@ namespace _YabuGames.Scripts.Managers
                 InitWashers(grid,washerLevel);
             }
 
+            yield return new WaitForSeconds(.1f);
             LevelSignals.Instance.OnInit?.Invoke();
 
         }
@@ -89,15 +93,17 @@ namespace _YabuGames.Scripts.Managers
 
         private void Save()
         {
-           // _washerCount = _washerList.Count - _mergedWashers;
             PlayerPrefs.SetInt("money",money);
             PlayerPrefs.SetInt("level",_level);
-            PlayerPrefs.SetInt("washerCount", _washerCount);
-            
+
+            if(_isStarted)
+                return;
             for (var i = 0; i < _washerList.Count; i++)
             {
                 PlayerPrefs.SetInt($"washerLevel{i}",_washerList[i].GetLevel());
             }
+            PlayerPrefs.SetInt("washerCount", _washerCount);
+            _isStarted = true;
         }
 
         public void DecreaseWasherCount()

@@ -1,4 +1,5 @@
 using System;
+using _YabuGames.Scripts.Managers;
 using DG.Tweening;
 using UnityEngine;
 
@@ -10,7 +11,9 @@ namespace _YabuGames.Scripts.Objects
         [SerializeField] private float fillingSpeed = 0.01f;
         [SerializeField] private Transform liquid;
         [SerializeField] private GameObject splashEffect;
+        [SerializeField] private float incomeDelay = .5f;
 
+        private float _delayer;
         private bool _isCollected;
         private BoxCollider _collider;
 
@@ -23,6 +26,12 @@ namespace _YabuGames.Scripts.Objects
         {
             if(_isCollected)
                 return;
+            _delayer -= .02f;
+            if (_delayer <= 0)
+            {
+                PoolManager.Instance.GetIncomeParticle(transform.position+Vector3.up,10);
+                _delayer = incomeDelay;
+            }
             if (liquid.localScale.y<1)
             {
                 liquid.localScale += Vector3.up * fillingSpeed;
@@ -46,7 +55,7 @@ namespace _YabuGames.Scripts.Objects
 
         public void FixSplashPosition(Vector3 splashPosition)
         {
-            var desiredPos = new Vector3(splashPosition.x, splashPosition.y, transform.position.z);
+            var desiredPos = new Vector3(splashPosition.x, splashPosition.y-.3f, transform.position.z);
 
             splashEffect.transform.position = desiredPos;
         }

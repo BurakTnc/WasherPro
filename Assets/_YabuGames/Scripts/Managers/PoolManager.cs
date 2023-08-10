@@ -1,5 +1,9 @@
 using System.Collections.Generic;
+using _YabuGames.Scripts.Signals;
+using DG.Tweening;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _YabuGames.Scripts.Managers
 {
@@ -7,9 +11,10 @@ namespace _YabuGames.Scripts.Managers
     {
         public static PoolManager Instance;
         
+    [FormerlySerializedAs("firstParticle")]
     [Header("                               // Set Particles Stop Action To DISABLE //")]
     [Space(20)]
-        [SerializeField] private List<GameObject> firstParticle = new List<GameObject>();
+        [SerializeField] private List<GameObject> incomeParticle = new List<GameObject>();
         [SerializeField] private List<GameObject> secondParticle = new List<GameObject>();
         [SerializeField] private List<GameObject> thirdParticle = new List<GameObject>();
         [SerializeField] private List<GameObject> fourthParticle = new List<GameObject>();
@@ -30,14 +35,21 @@ namespace _YabuGames.Scripts.Managers
             
         }
 
-        public void GetFirstParticle(Vector3 desiredPos)
+        public void GetIncomeParticle(Vector3 desiredPos, int value,bool isSmalled=false)
         {
-            var temp = firstParticle[0];
-            firstParticle.Remove(temp);
+            var temp = incomeParticle[0];
+            incomeParticle.Remove(temp);
             temp.transform.position = desiredPos;
+            temp.transform.localScale = isSmalled ? Vector3.one * .5f : Vector3.one;
+            temp.GetComponent<TextMeshPro>().text = "$" + value;
+            GameManager.Instance.money += value;
+            GameManager.Instance.earnedValue += value;
+            CoreGameSignals.Instance.OnSave?.Invoke();
             temp.SetActive(true);
-            firstParticle.Add(temp);
-            
+            incomeParticle.Add(temp);
+            temp.transform.DOMove(new Vector3(-1,4,3), 1).SetRelative(true).SetEase(Ease.InSine).OnComplete(() => temp.SetActive(false));
+            temp.transform.DOScale(Vector3.zero, 1).SetEase(Ease.InSine);
+
         }
         public void GetSecondParticle(Vector3 desiredPos)
         {

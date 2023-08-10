@@ -16,7 +16,7 @@ namespace _YabuGames.Scripts.Controllers
             {
                 foreach (var obj in cylinders)
                 {
-                    obj.material.DOColor(greenMaterial.color, .2f).SetEase(Ease.InSine);
+                    obj.material.DOColor(greenMaterial.color, .2f).SetEase(Ease.OutSine);
                 }
 
                 spriteRenderer.sprite = greenSprite;
@@ -25,7 +25,7 @@ namespace _YabuGames.Scripts.Controllers
             {
                 foreach (var obj in cylinders)
                 {
-                    obj.material.DOColor(redMaterial.color, .2f).SetEase(Ease.InSine);
+                    obj.material.DOColor(redMaterial.color, .2f).SetEase(Ease.OutSine);
                 }
 
                 spriteRenderer.sprite = redSprite;

@@ -15,15 +15,19 @@ namespace _YabuGames.Scripts.Controllers
         [SerializeField] private float washingForce;
         [SerializeField] private float scaleErrorFix;
         [SerializeField] private float colliderScaleErrorFix;
+        [SerializeField] private float incomeDelay = .5f;
 
+        private DrillerItem _driller;
         private float _gateIncreaseSpeed = .05f;
         private Vector3 _defaultWaterHoseScale;
         private Vector3 _currentColliderScale;
         private BoxCollider _collider;
         private Transform _waterEffect;
+        private float _delayer;
 
         private void Awake()
         {
+            _driller = transform.parent.GetComponent<DrillerItem>();
             _collider = GetComponent<BoxCollider>();
             _currentColliderScale = _collider.size;
             _defaultWaterHoseScale = waterHose.transform.localScale;
@@ -128,6 +132,13 @@ namespace _YabuGames.Scripts.Controllers
                // CleanTheDirt(other.transform);
                if (other.transform.root.TryGetComponent(out Clean clean))
                {
+                   _delayer -= .02f;
+                   if (_delayer <= 0)
+                   {
+                       PoolManager.Instance.GetIncomeParticle(transform.position + new Vector3(-.1f, 0, .5f),
+                           20 + _driller.GetLevel(),true);
+                       _delayer = incomeDelay;
+                   }
                    clean.CleanTheDirt(transform,washingForce);
                    //Debug.Log("dirt");
                }

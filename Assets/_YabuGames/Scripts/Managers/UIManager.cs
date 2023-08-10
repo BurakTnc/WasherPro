@@ -51,7 +51,7 @@ namespace _YabuGames.Scripts.Managers
             SetMoneyTexts();
             UpdateButtonConditions();
             buyButton.interactable = false;
-            goButton.interactable = true;
+            goButton.interactable = false;
         }
 
         #region Subscribtions
