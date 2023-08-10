@@ -45,6 +45,11 @@ namespace _YabuGames.Scripts.Controllers
                    GateSelection(gate);
                 }
             }
+
+            if (other.CompareTag("Finish"))
+            {
+                CoreGameSignals.Instance.OnLevelWin?.Invoke();
+            }
         }
     }
 }

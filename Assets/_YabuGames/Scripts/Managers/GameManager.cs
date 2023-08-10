@@ -109,6 +109,8 @@ namespace _YabuGames.Scripts.Managers
         public void DecreaseWasherCount()
         {
             _washerCount--;
+            if (_isStarted && _washerCount <= 0) 
+                CoreGameSignals.Instance.OnLevelFail?.Invoke();
         }
 
         public void IncreaseWasherCount()

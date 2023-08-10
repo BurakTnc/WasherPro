@@ -13,7 +13,7 @@ namespace _YabuGames.Scripts.Managers
         
         [SerializeField] private GameObject mainPanel, gamePanel, winPanel, losePanel, storePanel;
         [SerializeField] private TextMeshProUGUI[] moneyText;
-        [SerializeField] private TextMeshProUGUI buyButtonText;
+        [SerializeField] private TextMeshProUGUI buyButtonText, earnedText;
         [SerializeField] private Button buyButton, goButton;
 
         private float _buyPrice;
@@ -116,6 +116,7 @@ namespace _YabuGames.Scripts.Managers
         }
         private void LevelWin()
         {
+            earnedText.text = "$" + GameManager.Instance.earnedValue;
             gamePanel.SetActive(false);
             winPanel.SetActive(true);
             HapticManager.Instance.PlaySuccessHaptic();
@@ -124,7 +125,7 @@ namespace _YabuGames.Scripts.Managers
         private void LevelLose()
         {
             gamePanel.SetActive(false);
-            gamePanel.SetActive(true);
+            losePanel.SetActive(true);
             HapticManager.Instance.PlayFailureHaptic();
         }
         
