@@ -72,7 +72,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cleaningRotation: {x: 35, y: 0, z: 0}
   level: 0
-  moveSpeed: 200
+  moveSpeed: 4
   items:
   - {fileID: 1078657971669550350}
   - {fileID: 1217163304653548187}
@@ -570,6 +570,7 @@ MonoBehaviour:
   waterHose: {fileID: 1361319960802175166}
   rope: {fileID: 4583450322627055955}
   washingForce: 0.01
+  scaleErrorFix: 0
 --- !u!65 &4583450321482223969
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -637,6 +638,7 @@ MonoBehaviour:
   waterHose: {fileID: 2237127078367379305}
   rope: {fileID: 4583450322613298409}
   washingForce: 0.003
+  scaleErrorFix: 0
 --- !u!65 &252098882312132055
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1678,7 +1680,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4583450321884370318
 Transform:
   m_ObjectHideFlags: 0
@@ -5716,6 +5718,7 @@ MonoBehaviour:
   waterHose: {fileID: 5521019361359516369}
   rope: {fileID: 4583450323591604441}
   washingForce: 0.01
+  scaleErrorFix: 0
 --- !u!1001 &160230060309919260
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20346,6 +20349,7 @@ MonoBehaviour:
   waterHose: {fileID: 8811004188771292447}
   rope: {fileID: 4583450321532015931}
   washingForce: 0.01
+  scaleErrorFix: 0
 --- !u!1001 &160230060708323752
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20461,6 +20465,7 @@ MonoBehaviour:
   waterHose: {fileID: 6857689437047883750}
   rope: {fileID: 4583450323313470488}
   washingForce: 0.01
+  scaleErrorFix: 0
 --- !u!1001 &160230060817042481
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20596,6 +20601,7 @@ MonoBehaviour:
   waterHose: {fileID: 5490278300156501260}
   rope: {fileID: 4583450322714066820}
   washingForce: 0.01
+  scaleErrorFix: 0
 --- !u!1001 &160230060921256031
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20711,6 +20717,7 @@ MonoBehaviour:
   waterHose: {fileID: 9222526419777413898}
   rope: {fileID: 4583450322352203508}
   washingForce: 0.007
+  scaleErrorFix: 35
 --- !u!1001 &160230060999627304
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20826,6 +20833,7 @@ MonoBehaviour:
   waterHose: {fileID: 7220195211413751607}
   rope: {fileID: 4583450323231556717}
   washingForce: 0.01
+  scaleErrorFix: 0
 --- !u!1001 &4033242998044880769
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21223,7 +21231,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2950748474837389544, guid: 33d40aa5065b54512924663d684f67a3, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2950748474852355062, guid: 33d40aa5065b54512924663d684f67a3, type: 3}
       propertyPath: CollisionModule.enabled

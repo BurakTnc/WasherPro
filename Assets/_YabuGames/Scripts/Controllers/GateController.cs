@@ -52,23 +52,23 @@ namespace _YabuGames.Scripts.Controllers
             }
             UpdateInterface();
         }
-        public void IncreaseGateStats()
+        public void IncreaseGateStats(float increaseValue)
         {
             if(_isLocked)
                 return;
             switch (gateMode)
             {
                 case GateMode.Speed:
-                    speed += 0.05f;
+                    speed += increaseValue;
                    // _gateVisuals.SetGateColor(speed>=0);
                     break;
                 case GateMode.Power:
-                    power += 0.05f;
+                    power += increaseValue;
                     //_gateVisuals.SetGateColor(power>=0);
                     break;
                 case GateMode.Range:
                    // _gateVisuals.SetGateColor(range>=0);
-                    range += 0.05f;
+                    range += increaseValue;
                     break;
                 default:
                     break;
@@ -85,12 +85,13 @@ namespace _YabuGames.Scripts.Controllers
             switch (gateMode)
             {
                 case GateMode.Speed:
+                    washerController.IncreaseSpeed((int)speed);
                     break;
                 case GateMode.Power:
-                    washerController.IncreasePower(power);
+                    washerController.IncreasePower((int)power);
                     break;
                 case GateMode.Range:
-                    washerController.IncreaseRange(range);
+                    washerController.IncreaseRange((int)range);
                     break;
                 default:
                     break;

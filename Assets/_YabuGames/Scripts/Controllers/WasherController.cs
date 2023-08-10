@@ -13,14 +13,18 @@ namespace _YabuGames.Scripts.Controllers
         [SerializeField] private Transform rope;
         [SerializeField] private float washingForce;
         [SerializeField] private float scaleErrorFix;
+        [SerializeField] private float colliderScaleErrorFix;
 
+        private float _gateIncreaseSpeed = .05f;
         private Vector3 _defaultWaterHoseScale;
+        private Vector3 _currentColliderScale;
         private BoxCollider _collider;
         private Transform _waterEffect;
 
         private void Awake()
         {
             _collider = GetComponent<BoxCollider>();
+            _currentColliderScale = _collider.size;
             _defaultWaterHoseScale = waterHose.transform.localScale;
         }
 
@@ -65,9 +69,9 @@ namespace _YabuGames.Scripts.Controllers
         private void FixWaterHoseScale(Vector3 nozzlePosition)
         {
             var distance = (transform.position.z - nozzlePosition.z) / scaleErrorFix;
-            var desiredScale = new Vector3(1, 1, Math.Abs(distance));
+            var desiredScale = new Vector3(_defaultWaterHoseScale.x, _defaultWaterHoseScale.y, Math.Abs(distance));
             
-            desiredScale.z = Mathf.Clamp(desiredScale.z, 0, 1);
+            desiredScale.z = Mathf.Clamp(desiredScale.z, 0, .1f);
             waterHose.transform.localScale = desiredScale;
 
         }
@@ -75,18 +79,26 @@ namespace _YabuGames.Scripts.Controllers
         private void SetDefaultWaterScale()
         {
             waterHose.transform.localScale = _defaultWaterHoseScale;
+            var localPosition = waterHose.transform.localPosition;
+            localPosition = new Vector3(localPosition.x,
+                localPosition.y, _defaultWaterHoseScale.z / 2);
+            
+            waterHose.transform.localPosition = localPosition;
         }
         
 
         private void CleanTheDirt(Transform dirt)
         {
-            if (dirt.localScale.y < washingForce)
+            if (dirt.localScale.y <= 0)
             {
                 dirt.GetComponent<BoxCollider>().enabled = false;
                 return;
             }
             
-            dirt.transform.localScale -= Vector3.up * washingForce;
+            var desiredScale=dirt.transform.localScale - Vector3.up * washingForce;
+            
+            desiredScale.y = Mathf.Clamp(desiredScale.y, 0, 1);
+            dirt.transform.localScale = desiredScale;
             dirt.transform.position += Vector3.up * (washingForce / 2);
         }
 
@@ -120,7 +132,7 @@ namespace _YabuGames.Scripts.Controllers
                 if (other.TryGetComponent(out GateController gate))
                 {
                     gate.FixSplashPosition(transform.position);
-                    gate.IncreaseGateStats();
+                    gate.IncreaseGateStats(_gateIncreaseSpeed);
                 }
                 FixWaterHoseScale(other.transform.position);
             }
@@ -156,13 +168,27 @@ namespace _YabuGames.Scripts.Controllers
             }
         }
 
-        public void IncreasePower(float damage)
+        public void IncreasePower(float force)
         {
-            
+            washingForce += force / 2000;
+            if (washingForce > 0.1f)
+                washingForce = 0.1f;
+        }
+
+        public void IncreaseSpeed(float speed)
+        {
+            _gateIncreaseSpeed += speed/100;
         }
 
         public void IncreaseRange(float range)
         {
+            var desiredSize = _currentColliderScale + Vector3.forward * (range / colliderScaleErrorFix);
+            _collider.size = desiredSize;
+            desiredSize.z /= 2;
+            _collider.center = desiredSize;
+            
+            var desiredWaterScale = _defaultWaterHoseScale + Vector3.forward * (range / colliderScaleErrorFix / 15);
+            _defaultWaterHoseScale = desiredWaterScale;
             
         }
     }
