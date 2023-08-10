@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using _YabuGames.Scripts.Controllers;
 using _YabuGames.Scripts.Signals;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace _YabuGames.Scripts.Managers
 {
@@ -16,6 +18,8 @@ namespace _YabuGames.Scripts.Managers
 
         public int earnedValue;
         public int _washerCount;
+
+        [SerializeField] private GameObject[] platforms;
 
         private bool _isStarted;
         private int _level;
@@ -36,6 +40,7 @@ namespace _YabuGames.Scripts.Managers
 
             #endregion
             GetValues();
+            //platforms[_level].SetActive(true);
         }
 
         private IEnumerator Start()
@@ -71,6 +76,7 @@ namespace _YabuGames.Scripts.Managers
             CoreGameSignals.Instance.OnSave += Save;
             CoreGameSignals.Instance.OnLevelWin += Win;
             LevelSignals.Instance.OnSpawnNewItem += SpawnNewItem;
+            CoreGameSignals.Instance.OnLevelLoad += LoadScene;
             //LevelSignals.Instance.OnMerge += DecreaseWasherCount;
         }
 
@@ -78,12 +84,17 @@ namespace _YabuGames.Scripts.Managers
         {
             CoreGameSignals.Instance.OnSave -= Save;
             CoreGameSignals.Instance.OnLevelWin -= Win;
+            CoreGameSignals.Instance.OnLevelLoad -= LoadScene;
             LevelSignals.Instance.OnSpawnNewItem -= SpawnNewItem;
             //LevelSignals.Instance.OnMerge -= DecreaseWasherCount;
         }
 
         #endregion
 
+        private void LoadScene()
+        {
+            SceneManager.LoadScene(0);
+        }
         private void GetValues()
         {
             money = PlayerPrefs.GetInt("money", 0);
