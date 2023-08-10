@@ -6,6 +6,7 @@ using _YabuGames.Scripts.Signals;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace _YabuGames.Scripts.Managers
 {

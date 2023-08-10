@@ -37,6 +37,14 @@ namespace _YabuGames.Scripts.Managers
 
         public void GetIncomeParticle(Vector3 desiredPos, int value,bool isSmalled=false)
         {
+            if (isSmalled)
+            {
+                HapticManager.Instance.PlayRigidHaptic();
+            }
+            else
+            {
+                HapticManager.Instance.PlaySelectionHaptic();
+            }
             var temp = incomeParticle[0];
             incomeParticle.Remove(temp);
             temp.transform.position = desiredPos;

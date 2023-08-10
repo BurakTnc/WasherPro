@@ -1,81 +1,38 @@
+using System;
+using System.Collections;
 using _YabuGames.Scripts.Signals;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace _YabuGames.Scripts.Managers
 {
     public class LevelManager : MonoBehaviour
     {
         public static LevelManager Instance;
-        public int sceneID;
-        public int levelID;
+        public GameObject loadingPanel;
+        public Image loadingBar;
 
-        private void Awake()
+        private void Start()
         {
-            #region Singleton
-
-            if (Instance != this && Instance != null) 
-            {
-                Destroy(this);
-                return;
-            }
-
-            Instance = this;
-
-            #endregion
-            
-            GetValues();
-        }
-        
-        private void OnEnable()
-        {
-            Subscribe();
-        }
-
-        private void OnDisable()
-        {
-            UnSubscribe();
-        }
-
-        #region Subscribtons
-
-        private void Subscribe()
-        {
-            CoreGameSignals.Instance.OnSave += Save;
-            CoreGameSignals.Instance.OnLevelWin += LevelWin;
-            CoreGameSignals.Instance.OnLevelLoad += LoadScene;
-        }
-        
-        private void UnSubscribe()
-        {
-            CoreGameSignals.Instance.OnSave -= Save;
-            CoreGameSignals.Instance.OnLevelWin -= LevelWin;
-            CoreGameSignals.Instance.OnLevelLoad -= LoadScene;
-        }
-
-        #endregion
-        
-        private void GetValues()
-        {
-            sceneID = PlayerPrefs.GetInt("sceneID", 0);
-            levelID = PlayerPrefs.GetInt("levelID", 1);
-        }
-
-        private void LevelWin()
-        {
-           // if(false) return;
-            levelID++;
-        }
-
-        private void Save()
-        {
-            PlayerPrefs.SetInt("sceneID",sceneID);
-            PlayerPrefs.SetInt("levelID",levelID);
+            LoadScene();
         }
 
         private void LoadScene()
         {
-            SceneManager.LoadScene(sceneID);
+            StartCoroutine(LoadSceneAsync());
+        }
+
+        private IEnumerator LoadSceneAsync()
+        {
+            AsyncOperation operation = SceneManager.LoadSceneAsync(1);
+            loadingPanel.SetActive(true);
+            while (!operation.isDone)
+            {
+                var progress = Mathf.Clamp01(operation.progress / .9f);
+                loadingBar.fillAmount = progress;
+                yield return null;
+            }
         }
     }
 }
