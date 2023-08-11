@@ -152,6 +152,8 @@ namespace _YabuGames.Scripts.Managers
         {
             _level++;
             money += 100;
+            if (_level > 2)
+                _level = 0;
             CoreGameSignals.Instance.OnSave?.Invoke();
         }
         public void ArrangeMoney(int value)
