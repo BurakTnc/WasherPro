@@ -130,7 +130,7 @@ namespace _YabuGames.Scripts.Controllers
             if (other.CompareTag("Dirt"))
             {
                // CleanTheDirt(other.transform);
-               if (other.transform.root.TryGetComponent(out Clean clean))
+               if (other.transform.parent.TryGetComponent(out Clean clean))
                {
                    _delayer -= .02f;
                    if (_delayer <= 0)
@@ -140,7 +140,7 @@ namespace _YabuGames.Scripts.Controllers
                        _delayer = incomeDelay;
                    }
                    clean.CleanTheDirt(transform,washingForce);
-                   //Debug.Log("dirt");
+                   Debug.Log("dirt");
                }
             }
 

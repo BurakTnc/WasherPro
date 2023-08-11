@@ -6,7 +6,6 @@ namespace _YabuGames.Scripts
 {
     public class Clean : MonoBehaviour
     {
-        private Camera _camera;
 
         [SerializeField] private Texture2D dirtMaskBase;
         [SerializeField] private Texture2D brush;
@@ -14,24 +13,11 @@ namespace _YabuGames.Scripts
         [SerializeField] private Vector3 cleaningErrorOffset;
 
         private Texture2D _templateDirtMask;
-
-        private void Awake()
-        {
-            _camera=Camera.main;
-        }
+        
 
         private void Start()
         {
             CreateTexture();
-        }
-
-        private void Update()
-        {
-            // if (Input.GetMouseButton(0))
-            // {
-            //     CleanTheDirt();
-            //     //washer.position, transform.TransformDirection(washer.forward
-            // }
         }
 
         public void CleanTheDirt(Transform washer,float washingForce)

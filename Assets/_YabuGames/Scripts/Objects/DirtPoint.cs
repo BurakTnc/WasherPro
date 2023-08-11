@@ -13,7 +13,7 @@ namespace _YabuGames.Scripts.Objects
 
         private void GoToNextPosition()
         {
-            transform.root.position = nextPosition.position;
+            transform.parent.position = nextPosition.position;
         }
     }
 }

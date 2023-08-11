@@ -124,7 +124,7 @@ namespace _YabuGames.Scripts.Managers
 
         private void LevelLose()
         {
-            gamePanel.SetActive(false);
+            //gamePanel.SetActive(false);
             losePanel.SetActive(true);
             HapticManager.Instance.PlayFailureHaptic();
         }
